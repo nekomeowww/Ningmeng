@@ -1,0 +1,5 @@
+var config = {
+    "token" : "INSERT YOUR TOKEN HERE"
+}
+
+module.exports = config;
