@@ -2,34 +2,36 @@
 
 // Import
 
-let Msg = require('../control');
+let botctl = require('../control');
 
 // Message Control
 
-let MsgControl = {
+let msgctl = {
     start: () => {
 
     // Bot /start
     
-    Msg.message.start();
+    botctl.message.start();
 
     // Define Commands
 
-    Msg.message.command('help');
+    botctl.message.command('help');
 
     // Define Recieve Actions
 
-    Msg.message.hears('hi');
+    botctl.message.hears('hi');
 
     // Define Reply Actions
 
-    Msg.message.hearsRpy('喜欢羽毛 /', '好耶 /');
+    botctl.message.hearsRpy('喜欢羽毛 /', '好耶 /');
 
     // Define Sticker Actions
 
-    Msg.message.sticker();
+    // Sticker reply broken
+    // Each sticker the bot recieved will cause the bot do this action
+    //botctl.message.sticker();
     
     }
 }
 
-module.exports = MsgControl;
+module.exports = msgctl;

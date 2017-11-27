@@ -1,3 +1,3 @@
-let Control = require('./Control/control');
+let botctl = require('./Control/control');
 
-Control.start();
+botctl.start();

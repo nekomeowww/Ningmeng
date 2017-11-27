@@ -2,7 +2,7 @@
 
 const Telegraf = require('telegraf');
 let config = require('../config');
-let MsgControl = require('./Message/message');
+let msgctl = require('./Message/message');
 
 // Bot Here
 
@@ -39,13 +39,15 @@ let message = {
         Bot.hears(msg, (ctx) => ctx.reply(reply));
     },
 
-    sticker: () => Bot.on('sticker', (ctx) => ctx.reply('👍'))
+    sticker: () => {
+        Bot.on('sticker', (ctx) => ctx.reply('👍'))
+    }
 }
 
 // Control.start() to start a bot
 
 let start = () => {
-    MsgControl.start();
+    msgctl.start();
     Bot.startPolling();
 }
 
