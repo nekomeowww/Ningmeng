@@ -45,6 +45,4 @@ let msgctl = {
     }
 }
 
-botctl.Bot.on
-
 module.exports = msgctl;
