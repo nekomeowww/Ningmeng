@@ -22,10 +22,11 @@ let message = {
     command: (command) => {
         switch(command){
             case "help":
-                Bot.command('help', (ctx) => ctx.reply('发表情 /'));
+                Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             default:
-                Bot.command('help', (ctx) => ctx.reply('发表情 /'));
+                Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
+                break;
         }
     },
 
@@ -37,10 +38,6 @@ let message = {
 
     hearsRpy: (msg, reply) => {
         Bot.hears(msg, (ctx) => ctx.reply(reply));
-    },
-
-    sticker: () => {
-        Bot.on('sticker', (ctx) => ctx.reply('👍'))
     }
 }
 
@@ -53,3 +50,4 @@ let start = () => {
 
 exports.start = start;
 exports.message = message;
+exports.Bot = Bot;
