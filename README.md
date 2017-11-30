@@ -1,4 +1,4 @@
-# NingmengBot - Experimental Chatting System
+# NingmengBot - Just a Cute Bot
 
 ## Core Module
 
@@ -20,7 +20,6 @@ Thanks to @zhangyubaka for NLP resouce.
 This project will use [NodeJieba](https://github.com/yanyiwu/nodejieba).
 
 ## Plugin System
-
 
 Whatever just copy the moeBot code.
 
