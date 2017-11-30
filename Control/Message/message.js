@@ -18,7 +18,7 @@ let msgctl = {
         botctl.message.command('help');
         botctl.message.command('music');
         botctl.message.command('nlptest');
-
+        
         // Define Recieve Actions
 
         botctl.message.hears(/(?:hi)|(?:你好)/gi);
@@ -53,15 +53,13 @@ let msgctl = {
         //botctl.Bot.use();
 
         // ctx.message.text 是 message 的
+
         botctl.Bot.on('text', (ctx) => {
             console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
             console.log("Message type: text");
             console.log("Context: " + ctx.message.text);
-            console.log("Tag: ");
-            console.log(nlpctl.tokenizer(nlpctl.receiver(ctx.message.text)));
-            ctx.reply(JSON.stringify(nlpctl.tokenizer(nlpctl.receiver(ctx.message.text))));
         });
-
+        
         botctl.Bot.on('sticker', (ctx) => {
             console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
             console.log("Message type: sticker")
@@ -73,12 +71,16 @@ let msgctl = {
             console.log("Message type: photo")
             console.log("Context: " + ctx.message.photo);
         })
-        botctl.Bot.on('text', (ctx) => {
-            let text = ctx.message.text;
-            console.log("Text is "+ text);
-            let result = nlpctl.tokenizer(nlpctl.receiver(text));
-            ctx.reply(JSON.stringify(result));
-        })
+    },
+
+    nlptest: (data) => {
+
+        // NLPTEST
+        // Command Handler
+        let result = data.slice(9, -1);
+        let tagging = "";
+        tagging = nlpctl.tokenizer(nlpctl.receiver(result));
+        return JSON.stringify(tagging);
     }
 }
 

@@ -29,12 +29,7 @@ let message = {
                 Bot.command('music', (ctx) => ctx.reply('这个功能还在完善w'));
                 break;
             case "nlptest":
-                Bot.command('nlptest', (ctx) => {
-                    let text = ctx.message.text;
-                    console.log(text);
-                    let result = nlpctl.tokenizer(nlpctl.receiver(text));
-                    ctx.reply(JSON.stringify(result));
-                });
+                Bot.command('nlptest', (ctx) => ctx.reply(msgctl.nlptest(ctx.message.text)));
                 break;
             default:
                 Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
