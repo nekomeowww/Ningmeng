@@ -1,0 +1,24 @@
+{
+  "name": "ningmengbot",
+  "version": "1.0.0",
+  "description": "A Useless Bot made for Meaningless Person",
+  "main": "app.js",
+  "dependencies": {
+    "nodejieba": "^2.2.5",
+    "telegraf": "^3.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nekomeowww/Ningmeng.git"
+  },
+  "author": "Ayaka Neko",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/nekomeowww/Ningmeng/issues"
+  },
+  "homepage": "https://github.com/nekomeowww/Ningmeng#readme"
+}
