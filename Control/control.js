@@ -37,7 +37,20 @@ let message = {
     },
 
     hearsRpy: (msg, reply) => {
-        Bot.hears(msg, (ctx) => ctx.reply(reply));
+        let context = "null";
+        Bot.hears(msg, (ctx) => {
+            ctx.reply(reply);
+            context = ctx;
+            console.log(ctx);
+        })
+    },
+
+    sticker: () => {
+        Bot.on('sticker', (ctx) => {
+            ctx.message.array.forEach(element => {
+                console.log(element);
+            });
+        })
     }
 }
 
