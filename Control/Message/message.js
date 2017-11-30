@@ -17,6 +17,7 @@ let msgctl = {
 
         botctl.message.command('help');
         botctl.message.command('music');
+        botctl.message.command('nlptest');
 
         // Define Recieve Actions
 
@@ -56,6 +57,9 @@ let msgctl = {
             console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
             console.log("Message type: text");
             console.log("Context: " + ctx.message.text);
+            console.log("Tag: ");
+            console.log(nlpctl.tokenizer(nlpctl.receiver(ctx.message.text)));
+            ctx.reply(JSON.stringify(nlpctl.tokenizer(nlpctl.receiver(ctx.message.text))));
         });
 
         botctl.Bot.on('sticker', (ctx) => {
@@ -68,6 +72,12 @@ let msgctl = {
             console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
             console.log("Message type: photo")
             console.log("Context: " + ctx.message.photo);
+        })
+        botctl.Bot.on('text', (ctx) => {
+            let text = ctx.message.text;
+            console.log("Text is "+ text);
+            let result = nlpctl.tokenizer(nlpctl.receiver(text));
+            ctx.reply(JSON.stringify(result));
         })
     }
 }

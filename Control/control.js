@@ -3,6 +3,7 @@
 const Telegraf = require('telegraf');
 let config = require('../config');
 let msgctl = require('./Message/message');
+let nlpctl = require('./Message/nlp/nlp');
 
 // Bot Here
 
@@ -27,6 +28,14 @@ let message = {
             case "music":
                 Bot.command('music', (ctx) => ctx.reply('这个功能还在完善w'));
                 break;
+            case "nlptest":
+                Bot.command('nlptest', (ctx) => {
+                    let text = ctx.message.text;
+                    console.log(text);
+                    let result = nlpctl.tokenizer(nlpctl.receiver(text));
+                    ctx.reply(JSON.stringify(result));
+                });
+                break;
             default:
                 Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
@@ -48,11 +57,18 @@ let message = {
         })
     },
 
+    nlptest: () => {
+        Bot.on('text', (ctx) => {
+            let text = ctx.message.text;
+            console.log("Text is "+ text);
+            let result = nlpctl.tokenizer(nlpctl.receiver(text));
+            ctx.reply(JSON.stringify(result));
+        })
+    },
+
     sticker: () => {
         Bot.on('sticker', (ctx) => {
-            ctx.message.array.forEach(element => {
-                console.log(element);
-            });
+            //
         })
     }
 }
