@@ -4,13 +4,13 @@
 
 ### Link Shortener?
 
-For CloudMusic.
-Rich preview tagging [Example](https://neko.ayaka.moe/tests/ogptest)
-↑↑↑ This site only contains the necessary meta tags for [OGP](http://ogp.me/) (Why it's not HTTPS), view the source code instead.
+For CloudMusic.    
+Rich preview tagging [Example](https://neko.ayaka.moe/tests/ogptest)     
+↑↑↑ This site only contains the necessary meta tags for [OGP](http://ogp.me/) (Why it's not HTTPS), view the source code instead.     
 
 ### Basic Fun-Chat
 
-Replies with stickers or some funny messages.
+Replies with stickers or some funny messages.    
 (How to impliment it? :thinking:)
 
 ### NLP (May or may not)
@@ -54,5 +54,9 @@ And nice resource by [NLTK](http://www.nltk.org/)
 
 [NatureNode/natural](https://github.com/nekomeowww/natural)
 [nlp-compromise/compromise](https://github.com/nlp-compromise/compromise)
+
+## Plugin System
+
+Whatever just copy the moeBot code.
 
 Poor Neko decided to write some fun plugins first.
