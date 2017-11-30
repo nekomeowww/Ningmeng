@@ -24,6 +24,9 @@ let message = {
             case "help":
                 Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
+            case "music":
+                Bot.command('music', (ctx) => ctx.reply('这个功能还在完善w'));
+                break;
             default:
                 Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
