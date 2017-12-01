@@ -1,6 +1,7 @@
 // Essentials
 
 const Telegraf = require('telegraf');
+const Telegram = require('telegraf/telegram');
 let config = require('../config');
 let msgctl = require('./Message/message');
 let nlpctl = require('./Message/nlp/nlp');
@@ -9,6 +10,7 @@ let nlpctl = require('./Message/nlp/nlp');
 
 let token = config.token;
 const Bot = new Telegraf(token);
+const TelegramClient = new Telegram(token);
 
 //Control Here
 
@@ -48,16 +50,6 @@ let message = {
         Bot.hears(msg, (ctx) => {
             ctx.reply(reply);
             context = ctx;
-            console.log(ctx);
-        })
-    },
-
-    nlptest: () => {
-        Bot.on('text', (ctx) => {
-            let text = ctx.message.text;
-            console.log("Text is "+ text);
-            let result = nlpctl.tokenizer(nlpctl.receiver(text));
-            ctx.reply(JSON.stringify(result));
         })
     },
 
@@ -72,9 +64,11 @@ let message = {
 
 let start = () => {
     msgctl.start();
+    msgctl.debug();
     Bot.startPolling();
 }
 
 exports.start = start;
 exports.message = message;
 exports.Bot = Bot;
+exports.Telegram = Telegram;
