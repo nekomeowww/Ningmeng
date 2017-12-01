@@ -35,7 +35,7 @@ let msgctl = {
         let lemonlemonle = /(柠檬柠檬柠)|(柠檬柠)/g;
         let lemonletsplay = /((?:柠檬)|(柠檬酱))(?:来玩)/g;
         let hugneeded = /(?:要抱)((抱)|(.*))/gi;
-        let tiredforthis = /(^(?!不)(.*))|(^(.*)(?:累))/gi;
+        let tiredforthis = /(^(.*)(?:累))/gi;
 
         // Greetings
 
