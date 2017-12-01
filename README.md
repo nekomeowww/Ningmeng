@@ -15,7 +15,7 @@ Replies with stickers or some funny messages.
 
 ### NLP (May or may not)
 
-Thanks to @zhangyubaka for NLP resouce.
+Thanks to [@zhangyubaka](https://github.com/zhangyubaka) for NLP resouce.
 
 This project will use [NodeJieba](https://github.com/yanyiwu/nodejieba).
 

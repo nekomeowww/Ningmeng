@@ -12,14 +12,21 @@ let msgctl = {
         // Bot /start
 
         botctl.message.start();
-
-        // Define Commands
         
-        let commandPattern = /\/((help)|(music)|(nlptest))|()(?:@NingmengBot)/gi;
+        //let commandPattern = /\/((help)|(music)|(nlptest))|()(?:@NingmengBot)/gi;
+
+        // Register Commands
 
         botctl.message.command('help');
         botctl.message.command('music');
-        botctl.message.command('nlptest');
+        botctl.message.command('nlp');
+        botctl.message.command('nlpAnalyze');
+        botctl.message.command('nlpTagAdd');
+        botctl.message.command('nlpTagEdit');
+        botctl.message.command('nlpTagSearch');
+        botctl.message.command('info');
+
+        // /nlp@NingmengBot a
         
         // Define Recieve Actions
 
@@ -93,6 +100,7 @@ let msgctl = {
         // Sticker reply broken
         // Each sticker the bot recieved will cause the bot do this action
         //botctl.message.sticker();
+        //botctl.message.sticker();
     
     },
 
@@ -100,17 +108,19 @@ let msgctl = {
         
     },
 
-    nlptest: (data) => {
+    nlp: (data) => {
         // NLPTEST
         // Command Handler
 
         let result = "";
 
+        console.log("Data before slice: " + data);
+
         if(/@NingmengBot/gi.test(data)) {
-            result = data.slice(21);
+            result = data.slice(17);
         }
         else {
-            result = data.slice(9);
+            result = data.slice(5);
         }
 
         let tagging = nlpctl.tokenizer(nlpctl.receiver(result));
@@ -124,9 +134,9 @@ let msgctl = {
             console.log("Context: " + ctx.message.text);
         });
         
-        botctl.Bot.on('sticker', (ctx) => {
+        botctl.Bot.on('message', (ctx) => {
             console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
-            console.log("Message type: sticker")
+            console.log("Message type: message")
             console.log("Context: " + JSON.stringify(ctx.message.sticker));
             //ctx.message.sticker
         })
