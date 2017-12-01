@@ -36,7 +36,7 @@ let msgctl = {
         let lemonletsplay = /((?:柠檬)|(柠檬酱))(?:来玩)/g;
         let hugneeded = /(?:要抱)((抱)|(.*))/gi;
         let tiredforthis = /(^(?!不)(.*))|(^(.*)(?:累))/gi;
-        
+
         // Greetings
 
         let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好)|(?:早))/gi;
@@ -65,7 +65,7 @@ let msgctl = {
         botctl.message.hearsRpy(lemoncute, "啊呜啊呜(捂脸)");
         botctl.message.hearsRpy(lemonlemonle, "咕噜咕噜~ 要做什么啦！");
         botctl.message.hearsRpy(lemonletsplay, "(竖起耳朵) 柠檬也想玩呢，可是 Neko 说要继续研究心的东西什么的...弄完这些工作才能玩呢。抱歉啦~");
-        botctl.message.hearsRpt(hugneeded, "啊呜啊呜，抱紧紧...（顺毛）");
+        botctl.message.hearsRpy(hugneeded, "啊呜啊呜，抱紧紧...（顺毛）");
         botctl.message.hearsRpy(tiredforthis, "揉揉...实在太累的话就休息一下呢喵...");
 
         botctl.message.hearsRpy(lemonmorning, "喵~早安");
