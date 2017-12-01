@@ -37,19 +37,19 @@ let message = {
                 Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
-            case "nlpAnalyze":
+            case "nlpa":
                 Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
-            case "nlpTagAdd":
+            case "nlptagadd":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
                 Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
                 break;
-            case "nlpTagEdit":
+            case "nlptagedit":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
                 Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
                 break;
-            case "nlpTagSearch":
+            case "nlptagsearch":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
                 Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
                 break;
