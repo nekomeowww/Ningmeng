@@ -23,18 +23,26 @@ let message = {
     },
 
     command: (command) => {
+        let fullcommand = command + "@NingmengBot";
+        
         switch(command){
             case "help":
-                Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(command, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(fullcommand, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             case "music":
-                Bot.command('music', (ctx) => ctx.reply('这个功能还在完善w'));
+                Bot.command(command, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(fullcommand, (ctx) => ctx.reply('这个功能还在完善w'));
                 break;
             case "nlptest":
-                Bot.command('nlptest', (ctx) => ctx.reply(msgctl.nlptest(ctx.message.text)));
+                Bot.command(command, (ctx) => ctx.reply(msgctl.nlptest(ctx.message.text)));
+                Bot.command(fullcommand, (ctx) => ctx.reply(msgctl.nlptest(ctx.message.text)));
                 break;
+            case "central":
+                Bot.command()
             default:
-                Bot.command('help', (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(command, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(fullcommand, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
         }
     },
