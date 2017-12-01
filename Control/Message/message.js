@@ -14,6 +14,8 @@ let msgctl = {
         botctl.message.start();
 
         // Define Commands
+        
+        let commandPattern = /\/((help)|(music)|(nlptest))|()(?:@NingmengBot)/gi;
 
         botctl.message.command('help');
         botctl.message.command('music');
@@ -28,7 +30,7 @@ let msgctl = {
         let dislikeall = /((?!不)(.*?)(?:讨厌)(((?:Neko)|(?: Neko))|(?:羽毛)|(?:柠檬)))|((.*?)(?:讨厌)\w(((?:Neko)|(?: Neko))|(?:羽毛)|(?:柠檬)))|((.*?)((?:不)((.*?)(?:喜欢)|(.*?)(?:讨厌)))\w((?:Neko)|(?:羽毛)))|(.*?)((?:不)(.*?)(?:喜欢))/gi;
         let lovefeather = /(?:喜欢羽毛)|(?:爱羽毛)/g;
         let loveneko = /^(?!不)(?:喜欢 Neko)|(?:喜欢Neko)/gi;
-        let talk = /(?:柠檬)((?!.))|(?:柠檬酱)((?!.))/g;
+        let talk = /^(柠檬)((?!.))|^(柠檬酱)((?!.))/g;
         let sadmeow = /(?:喵)(?:\.)+/g;
         let lemoncute = /(?:柠檬)(.*?)(?:可爱)/g;
         let lemonnotcute = /(.*?)(不)(.*?)(?:柠檬)|(?:柠檬)(.*?)(不)(.*?)/g;
@@ -101,7 +103,16 @@ let msgctl = {
     nlptest: (data) => {
         // NLPTEST
         // Command Handler
-        let result = data.slice(9);
+
+        let result = "";
+
+        if(/@NingmengBot/gi.test(data)) {
+            result = data.slice(21);
+        }
+        else {
+            result = data.slice(9);
+        }
+
         let tagging = nlpctl.tokenizer(nlpctl.receiver(result));
         return JSON.stringify(tagging);
     },
