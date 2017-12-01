@@ -22,27 +22,43 @@ let message = {
         })
     },
 
-    command: (command) => {
-        let fullcommand = command + "@NingmengBot";
-        
-        switch(command){
+    command: (action) => {
+        let fullaction = action + "@NingmengBot";
+        switch(action){
             case "help":
-                Bot.command(command, (ctx) => ctx.reply('随意说话就好啦w'));
-                Bot.command(fullcommand, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(fullaction, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             case "music":
-                Bot.command(command, (ctx) => ctx.reply('随意说话就好啦w'));
-                Bot.command(fullcommand, (ctx) => ctx.reply('这个功能还在完善w'));
+                Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(fullaction, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
-            case "nlptest":
-                Bot.command(command, (ctx) => ctx.reply(msgctl.nlptest(ctx.message.text)));
-                Bot.command(fullcommand, (ctx) => ctx.reply(msgctl.nlptest(ctx.message.text)));
+            case "nlp":
+                Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
-            case "central":
-                Bot.command()
+            case "nlpAnalyze":
+                Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                break;
+            case "nlpTagAdd":
+                Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
+                Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
+                break;
+            case "nlpTagEdit":
+                Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
+                Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
+                break;
+            case "nlpTagSearch":
+                Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
+                Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
+                break;
+            case "info":
+                Bot.command(action, (ctx) => ctx.reply(">>> UNDER CONSTRUCTION <<<"));
+                Bot.command(fullaction, (ctx) => ctx.reply(">>> UNDER CONSTRUCTION <<<"));
+                break;
             default:
-                Bot.command(command, (ctx) => ctx.reply('随意说话就好啦w'));
-                Bot.command(fullcommand, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
         }
     },
@@ -54,17 +70,33 @@ let message = {
     },
 
     hearsRpy: (msg, reply) => {
-        let context = "null";
         Bot.hears(msg, (ctx) => {
             ctx.reply(reply);
-            context = ctx;
         })
     },
 
     sticker: () => {
         Bot.on('sticker', (ctx) => {
             //
+            fileid = ctx.message.sticker.file_id;
+            console.log(fileid);
+            TelegramClient.sendSticker(fileid);
         })
+    },
+
+    info: () => {
+        //Get all info of this group
+
+    },
+
+    checker: (action) => {
+        if(/@NingmengBot/gi.test(action)) {
+            let startPoint = action.Search("@NingmengBot");
+            return action.slice(0, startPoint);
+        }
+        else {
+            return action;
+        }
     }
 }
 
