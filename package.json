@@ -4,12 +4,13 @@
   "description": "A Useless Bot made for Meaningless Person",
   "main": "app.js",
   "dependencies": {
+    "https-proxy-agent": "^2.1.1",
     "nodejieba": "^2.2.5",
-    "telegraf": "^3.16.4"
+    "telegraf": "^3.17.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node app.js"
+    "build": "node app.js"
   },
   "repository": {
     "type": "git",
