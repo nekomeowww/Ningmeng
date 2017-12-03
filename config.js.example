@@ -1,5 +1,6 @@
 var config = {
-    "token" : "INSERT YOUR TOKEN HERE"
+    "token" : "INSERT YOUR TOKEN HERE",
+    "proxy" : "URL"
 }
 
 module.exports = config;

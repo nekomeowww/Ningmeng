@@ -2,6 +2,7 @@
 
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
+//const HttpsProxyAgent = require('https-proxy-agent');
 let config = require('../config');
 let msgctl = require('./Message/message');
 let nlpctl = require('./Message/nlp/nlp');
@@ -9,19 +10,20 @@ let nlpctl = require('./Message/nlp/nlp');
 // Bot Here
 
 let token = config.token;
+let proxy = config.proxy;
+
+console.log("No Proxy Settings.");
 const Bot = new Telegraf(token);
 const TelegramClient = new Telegram(token);
+
+Bot.start((ctx) => {
+    console.log("started: ", ctx.from.id);
+    return ctx.reply('喵！');
+})
 
 //Control Here
 
 let message = {
-    start: () => {
-        Bot.start((ctx) => {
-            console.log("started: ", ctx.from.id);
-            return ctx.reply('喵！');
-        })
-    },
-
     command: (action) => {
         let fullaction = action + "@NingmengBot";
         switch(action){
@@ -34,12 +36,12 @@ let message = {
                 Bot.command(fullaction, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             case "nlp":
-                Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
-                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                Bot.command(action, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
+                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
                 break;
             case "nlpa":
-                Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
-                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                Bot.command(action, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
+                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
                 break;
             case "nlptagadd":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
@@ -103,8 +105,8 @@ let message = {
 // Control.start() to start a bot
 
 let start = () => {
-    msgctl.start();
-    msgctl.debug();
+    msgctl.msgctl.start();
+    msgctl.msgctl.debug();
     Bot.startPolling();
 }
 
