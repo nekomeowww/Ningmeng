@@ -28,36 +28,28 @@ let message = {
         let fullaction = action + "@NingmengBot";
         switch(action){
             case "help":
-                Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
-                Bot.command(fullaction, (ctx) => ctx.reply('随意说话就好啦w'));
+                Bot.command([action, fullaction], (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             case "music":
                 Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
-                Bot.command(fullaction, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             case "nlp":
                 Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
-                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
             case "nlpa":
                 Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
-                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
             case "nlptagadd":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
-                Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
                 break;
             case "nlptagedit":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
-                Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
                 break;
             case "nlptagsearch":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
-                Bot.command(fullaction, (ctx) => ctx.reply("还不支持哦！"));
                 break;
             case "info":
-                Bot.command(action, (ctx) => ctx.reply(">>> UNDER CONSTRUCTION <<<"));
-                Bot.command(fullaction, (ctx) => ctx.reply(">>> UNDER CONSTRUCTION <<<"));
+                info.info();
                 break;
             default:
                 Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
@@ -84,21 +76,21 @@ let message = {
             console.log(fileid);
             TelegramClient.sendSticker(fileid);
         })
-    },
+    }
+}
 
+let info = {
     info: () => {
-        //Get all info of this group
+        let commandIn = ["info", "info@NingmengBot"];
+        Bot.command(commandIn, (ctx) => {
+            ctx.reply(ctx.message);
+            ctx.reply(ctx.from);
+            ctx.reply(ctx.chat);
 
-    },
-
-    checker: (action) => {
-        if(/@NingmengBot/gi.test(action)) {
-            let startPoint = action.Search("@NingmengBot");
-            return action.slice(0, startPoint);
-        }
-        else {
-            return action;
-        }
+            console.log(ctx.message);
+            console.log(ctx.from);
+            console.log(ctx.chat);
+        });
     }
 }
 
