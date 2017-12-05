@@ -45,11 +45,11 @@ let msgctl = {
         let hugneeded = /(?:要抱)((抱)|(.*))/gi;
         let tiredforthis = /(^(.*)(?:累))/gi;
 
-        let meowmeow = /喵/gi
+        let meowmeow = /(喵)/gi
 
         // Greetings
 
-        let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好)|(\b早\b))/gi;
+        let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好)|(早))/gi;
         let lemonmorning = /((柠檬酱)|(?:柠檬))((?:早安安)|(?:早安)|(?:早上好)|(?:早))/g;
         let enmorning = /((?:Good Morning))(\w|((.*)(?:.*)))/gi;
 
