@@ -36,12 +36,12 @@ let message = {
                 Bot.command(fullaction, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
             case "nlp":
-                Bot.command(action, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
-                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
+                Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
             case "nlpa":
-                Bot.command(action, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
-                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.msgctl.nlp(ctx.message.text)));
+                Bot.command(action, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
+                Bot.command(fullaction, (ctx) => ctx.reply(msgctl.nlp(ctx.message.text)));
                 break;
             case "nlptagadd":
                 Bot.command(action, (ctx) => ctx.reply("还不支持哦！"));
@@ -105,8 +105,8 @@ let message = {
 // Control.start() to start a bot
 
 let start = () => {
-    msgctl.msgctl.start();
-    msgctl.msgctl.debug();
+    msgctl.start();
+    msgctl.debug();
     Bot.startPolling();
 }
 
