@@ -6,20 +6,17 @@ let botctl = require('../control');
 let nlpctl = require('./nlp/nlp');
 let proctl = require('../processor');
 
+let registerText = require('../registerText');
+
 // Message Control
 
 let msgctl = {
-
-    start: () => {
-
-        proctl.message();
+    message: () => {
 
     },
 
-    //Registeration of all things
-    
-    center: () => {
-
+    text: (ctx) => {
+        
     },
 
     nlp: (data) => {
@@ -108,8 +105,7 @@ let message = () => {
     this.text = ""
 }
 
-exports.msgctl = msgctl;
-exports.message = message;
+module.exports = msgctl;
 
 /*
 
