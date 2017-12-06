@@ -49,7 +49,7 @@ let msgctl = {
 
         // Greetings
 
-        let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好)/gi;
+        let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好))/gi;
         let lemonmorning = /((柠檬酱)|(?:柠檬))((?:早安安)|(?:早安)|(?:早上好)|(?:早))/g;
         let enmorning = /((?:Good Morning))(\w|((.*)(?:.*)))/gi;
 
