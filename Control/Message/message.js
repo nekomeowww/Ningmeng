@@ -143,40 +143,7 @@ let msgctl = {
     },
 
     debug: () => {
-
-        // Text Processing
         
-        botctl.Bot.on('text', (ctx) => {
-            console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
-            console.log("Message type: text");
-            //console.log("Context: " + ctx.message.text);
-            //console.log(JSON.stringify(ctx.message));
-            //console.log("Context: " + JSON.stringify());
-        });
-        
-        //Other Messages Processing
-
-        botctl.Bot.on('message', (ctx) => {
-            console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
-            console.log("Message type: message")
-            console.log("Context: " + JSON.stringify(ctx.message.sticker));
-            //ctx.message.sticker
-        })
-
-        botctl.Bot.on('channel_post', (ctx => {
-            console.log("From Channal");
-            console.log("Message type: message");
-            //console.log("Context: " + JSON.stringify(ctx));
-            console.log("Text: " + JSON.stringify(ctx.channelPost));
-        }))
-
-        // Photo Processing
-
-        botctl.Bot.on('photo', (ctx) => {
-            console.log("From " + ctx.message.from.username + "(" + ctx.from.id + ")");
-            console.log("Message type: photo")
-            console.log("Context: " + JSON.stringify(ctx.message.photo));
-        })
     }
 }
 
@@ -201,43 +168,3 @@ let message = () => {
 }
 
 module.exports = msgctl;
-
-/*
-
-start: () => {
-    
-            //let commandPattern = /\/((help)|(music)|(nlptest))|()(?:@NingmengBot)/gi;
-    
-            // Register Commands
-    
-            botctl.message.command('help');
-            botctl.message.command('music');
-            botctl.message.command('nlp');
-            botctl.message.command('nlpa');
-            botctl.message.command('nlptagadd');
-            botctl.message.command('nlptagedit');
-            botctl.message.command('nlptagsearch');
-            botctl.message.command('info');
-    
-            // /nlp@NingmengBot a
-            
-            // Define Recieve Actions
-    
-            botctl.message.hears(/(?:hi)|(?:你好)/gi);
-    
-            // Define Reply Actions
-        
-            
-    
-            
-    
-            // Define Sticker Actions
-    
-            // Sticker reply broken
-            // Each sticker the bot recieved will cause the bot do this action
-            //botctl.message.sticker();
-            //botctl.message.sticker();
-        
-        },
-
-*/
