@@ -1,6 +1,16 @@
 var config = {
-    "token" : "INSERT YOUR TOKEN HERE",
-    "proxy" : "URL"
+    token : "Put Your API Key Here",
+    webhook : {
+        url: "Your Webserver URL",
+        path: "Your Webserver Path",
+        port: "Your Webserver Port"
+    },
+    proxy : "127.0.0.1:1087",
+    plugins: {
+        flightTrack: {
+            
+        }
+    }
 }
 
 module.exports = config;

@@ -1,10 +1,12 @@
 {
   "name": "ningmengbot",
-  "version": "1.0.0",
+  "version": "0.2.1",
   "description": "A Useless Bot made for Meaningless Person",
   "main": "app.js",
   "dependencies": {
     "https-proxy-agent": "^2.1.1",
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
     "log4js": "^2.3.12",
     "nodejieba": "^2.2.5",
     "telegraf": "^3.17.0"
