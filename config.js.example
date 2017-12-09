@@ -1,9 +1,10 @@
 var config = {
     token : "Put Your API Key Here",
+    username: "Bot username"
     webhook : {
         url: "Your Webserver URL",
         path: "Your Webserver Path",
-        port: "Your Webserver Port"
+        port: Your Webserver Port
     },
     proxy : "127.0.0.1:1087",
     plugins: {

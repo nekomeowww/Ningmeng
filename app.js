@@ -14,6 +14,8 @@ let webhookPort = config.webhook.port;
 
 const app = new Koa();
 
+bot.botctl.start();
+
 bot.Bot.telegram.setWebhook(webhookUrl + webhookPath);
 
 app.use(koaBody());

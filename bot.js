@@ -7,6 +7,7 @@ const log4js = require('log4js');
 // Local Files
 
 let config = require('./config');
+let core = require('./control');
 let packageInfo = require('./package.json');
 
 // Time
@@ -66,6 +67,10 @@ let TelegramClient = new Telegram(token);
 
 let botctl = {
     start: () => {
+        core.control();
+    },
+
+    message: () => {
 
     }
 }
