@@ -4,9 +4,6 @@
 
 let botctl = require('../control');
 let nlpctl = require('./nlp/nlp');
-let proctl = require('../processor');
-
-let registerText = require('../registerText');
 
 // Message Control
 
