@@ -17,7 +17,7 @@ let CurrentTime = d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-"
 
 // Logger
 
-let fileName = "./log/NingmengBot-" + CurrentTime + ".log";
+let fileName = "./log/" + config.username + "-" + CurrentTime + ".log";
 
 log4js.configure({
     appenders: {
@@ -25,14 +25,14 @@ log4js.configure({
       console: { type: 'console' }
     },
     categories: {
-      Ningmeng: { appenders: ['console', 'Logger'], level: 'trace' },
+      Bot: { appenders: ['console', 'Logger'], level: 'trace' },
       default: { appenders: ['console', 'Logger'], level: 'trace' }
     }
   });
 
-const logger = log4js.getLogger('Ningmeng');
+const logger = log4js.getLogger('Bot');
 
-logger.info("开始时间：" + CurrentTime + " - " + "Ningmeng 版本：" + packageInfo.version);
+logger.info("开始时间：" + CurrentTime + " - " + config.username + " 版本：" + packageInfo.version);
 
 // Bot Here
 
@@ -53,7 +53,7 @@ Bot.start((ctx) => {
 
 let message = {
     command: (action) => {
-        let fullaction = action + "@NingmengBot";
+        let fullaction = action + "@" + config.username;
         switch(action){
             case "help":
                 Bot.command([action, fullaction], (ctx) => ctx.reply('随意说话就好啦w'));
@@ -109,7 +109,7 @@ let message = {
 
 let info = {
     info: () => {
-        let commandIn = ["info", "info@NingmengBot"];
+        let commandIn = ["info", "info" + config.username];
         Bot.command(commandIn, (ctx) => {
             let Version = "Bot Version: " + packageInfo.version;
             let messageId = "Message ID: " + ctx.message.message_id;
