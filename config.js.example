@@ -1,6 +1,20 @@
 var config = {
-    "token" : "INSERT YOUR TOKEN HERE",
-    "proxy" : "URL"
+    token : "API Token",
+    username : "Bot Username",
+    webhook : {
+        url: "URL for webhook",
+        path: "/",
+        port: 8500
+    },
+    proxy : "127.0.0.1:1080",
+    plugins: {
+        flightTrack: {
+            
+        },
+        weather: {
+            
+        }
+    }
 }
 
 module.exports = config;
