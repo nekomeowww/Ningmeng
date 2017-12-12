@@ -2,7 +2,8 @@
 
 // Import
 
-let botctl = require('../control');
+let bot = require('../bot');
+let botctl = require('./control');
 let nlpctl = require('./nlp/nlp');
 
 // Message Control
@@ -117,7 +118,7 @@ let msgctl = {
 
         let result = "";
 
-        console.log("Data before slice: " + data);
+        bot.Log.debug("Data before slice: " + data);
 
         if(/@NingmengBot/gi.test(data)) {
             result = data.slice(17);
