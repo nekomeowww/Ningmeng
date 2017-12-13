@@ -1,4 +1,6 @@
+let bot = require('./bot');
 let botctl = require('./Control/control');
+let msgctl = require('./Control/message');
 
-botctl.start();
-botctl.Bot.startPolling();
+msgctl.start();
+bot.Bot.startPolling();

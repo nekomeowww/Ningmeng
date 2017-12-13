@@ -41,25 +41,25 @@ let message = {
                 info.info();
                 break;
             default:
-                Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
+                bot.Bot.command(action, (ctx) => ctx.reply('随意说话就好啦w'));
                 break;
         }
     },
 
     hears: (msg) => {
         if(msg == 'hi') {
-            Bot.hears('hi', (ctx) => ctx.reply('Hey there!'));
+            bot.Bot.hears('hi', (ctx) => ctx.reply('Hey there!'));
         }
     },
 
     hearsRpy: (msg, reply) => {
-        Bot.hears(msg, (ctx) => {
+        bot.Bot.hears(msg, (ctx) => {
             ctx.reply(reply);
         })
     },
 
     sticker: () => {
-        Bot.on('sticker', (ctx) => {
+        bot.Bot.on('sticker', (ctx) => {
             //
             fileid = ctx.message.sticker.file_id;
             logger.trace(fileid)
@@ -71,7 +71,7 @@ let message = {
 let info = {
     info: () => {
         let commandIn = ["info", "info" + config.username];
-        Bot.command(commandIn, (ctx) => {
+        bot.Bot.command(commandIn, (ctx) => {
             let Version = "Bot Version: " + packageInfo.version;
             let messageId = "Message ID: " + ctx.message.message_id;
             let messageType = "Message Type: " + ctx.message.chat.type;
@@ -105,9 +105,4 @@ let info = {
     }
 }
 
-// Control.start() to start a bot
-
-exports.start = start;
 exports.message = message;
-exports.Bot = Bot;
-exports.Telegram = Telegram;
