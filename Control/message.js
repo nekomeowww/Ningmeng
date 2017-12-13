@@ -4,7 +4,7 @@
 
 let bot = require('../bot');
 let botctl = require('./control');
-let nlpctl = require('./nlp/nlp');
+let nlpctl = require('./Message/nlp/nlp');
 
 // Message Control
 
