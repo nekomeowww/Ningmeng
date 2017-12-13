@@ -8,7 +8,7 @@ const log4js = require('log4js');
 
 let config = require('./config');
 let core = require('./Control/control');
-let msgctl = require('./Control/Message/message');
+let msgctl = require('./Control/message');
 let packageInfo = require('./package.json');
 
 // Time
