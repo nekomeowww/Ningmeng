@@ -5,39 +5,39 @@ let config = require('../config');
 let botctl = require('../control');
 
 let plugin = {
-  start: () => {
+  core(ctx) {
     if(config.plugins.flightTrack.enable) {
-      
+      this.start(ctx);
     }
     else {
       return "该插件未启用。";
     }
+  },
+  start: (ctx) => {
+    tracker.core(ctx);
   }
 }
 
 let tracker = {
-  core: () => {
+  core(ctx) {
     requestPromise(link)
     .then(function (htmlString) {
       // Process html...
-
-      parse(htmlString)
+    return parse(htmlString)
     })
     .catch(function (err) {
       // Crawling failed...
       
     });
-    
-    function parse(body) {
-    
-        var $ = cheerio.load(body);
-        var result = $('div.statusLines').text().split('\n')
-        console.log(result);
-        
-    }
+  },
+  parse(body) {
+      var $ = cheerio.load(body);
+      var result = $('div.statusLines').text().split('\n')
+      return result;
   }
 }
 
+module.exports = plugin;
 
 // Simplified Chinese
 // https://www.cn.kayak.com/tracker/FLIGHT_NUMBER/FLIGHT_DATE

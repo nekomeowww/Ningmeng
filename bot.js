@@ -8,6 +8,7 @@ const log4js = require('log4js');
 
 let config = require('./config');
 let core = require('./control');
+let plugin = require('./Plugins/plugin');
 let packageInfo = require('./package.json');
 
 // Bot Username
@@ -83,7 +84,7 @@ let botctl = {
 
 let plgctl = {
     start: () => {
-
+        plugin.control();
     }
 }
 
