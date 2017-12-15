@@ -1,6 +1,20 @@
 var config = {
-    "token" : "INSERT YOUR TOKEN HERE",
-    "proxy" : "URL"
+    token : "Put Your API Key Here",
+    username: "Bot username"
+    webhook : {
+        url: "Your Webserver URL",
+        path: "Your Webserver Path",
+        port: Your Webserver Port
+    },
+    proxy : "127.0.0.1:1087",
+    plugins: {
+        flightTrack: {
+            enable: false,
+            version: "0.1.0",
+            locale: "en-US" //Options: zh-CHS (Simplified Chinese), zh-CHT (Traditional Chinese), en-US (English: United States)
+
+        }
+    }
 }
 
 module.exports = config;
