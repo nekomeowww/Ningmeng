@@ -5,8 +5,10 @@ let control = require('../control');
 let flightTrack = require('./flightTrack');
 
 let plugin = {
-    control: () => {
+    control() {
         flightTrack
 
     }
 }
+
+module.exports = plugin;

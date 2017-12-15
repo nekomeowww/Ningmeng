@@ -13,25 +13,40 @@ let core = {
         bot.Bot.command(command.register('/help'), (ctx) => ctx.reply("随意说话就好了喵w"));
         bot.Bot.command(command.register('/commandCheck'), (ctx) => ctx.reply(command.commandCheck(ctx.message.text)));
         bot.Bot.command(command.register('/info'), (ctx) => info.info(ctx));
+        bot.Bot.command(command.register('/progynova'), (ctx) => ctx.reply("是糖糖! "));
         bot.Bot.hears('喵', (ctx) => ctx.reply('喵'));
 
         // Context Processing
         
         // Text Handling
+        let botlog = bot.Log;
+
         bot.Bot.on('text', (ctx) => {
-            bot.Log.trace(ctx.message.text);
+
+            //bot.Log.trace(ctx.message);
+
+            let output = "来自: ";
+            if(ctx.message.from.first_name || ctx.message.from.last_name) {
+                botlog.trace(output + ctx.message.from.first_name + ctx.message.from.last_name + " - " + ctx.message.text);
+            }
+            else if(ctx.message.from.username) {
+                botlog.trace(output + ctx.message.from.username + " - " + ctx.message.text)                
+            }
+            else {
+                botlog.trace(output + ctx.message.from.id + " - " + ctx.message.text)
+            }
+
+            // Port to processor
             msgctl.core(ctx);
-            return ctx.message.text
+            return ctx.message.text;
         })
         // Sticker Handling
         bot.Bot.on('sticker', (ctx) => {
             stkctl.core(ctx);
-            return ctx.reply('喵 /');
         });
         // Photo Handling
         bot.Bot.on('photo', (ctx) => {
             //bot.Log.debug(ctx.message);
-            return ctx.reply('喵 /');
         });
         //Channel Post Handling
         bot.Bot.on('channel_post', (ctx) => {
