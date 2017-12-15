@@ -10,6 +10,10 @@ let config = require('./config');
 let core = require('./control');
 let packageInfo = require('./package.json');
 
+// Bot Username
+
+let botUsername = "@" + config.username;
+
 // Time
 
 let Time = new Date();
@@ -83,6 +87,7 @@ let plgctl = {
     }
 }
 
+exports.botUsername = botUsername;
 exports.Bot = Bot;
 exports.TelegramClient = TelegramClient;
 exports.Log = Log;
