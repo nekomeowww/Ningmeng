@@ -1,0 +1,32 @@
+{ 
+    "message_id": 4597,
+    "from": { 
+        "id": 330829346,
+        "is_bot": false,
+        "first_name": "絢香",
+        "last_name": "猫",
+        "username": "n3ko10",
+        "language_code": "en" 
+    },
+    "chat": { 
+        "id": -251621820,
+        "title": "ネコ部屋",
+        "type": "group",
+        "all_members_are_administrators": false 
+    },
+    "date": 1513330246,
+    "sticker": { 
+        "width": 512,
+        "height": 507,
+        "emoji": "⁉",
+        "set_name": "DuangW",
+        "thumb": {
+            "file_id": "AAQFABMOd9AyAAT95FqO8UIULmsiAAIC",
+            "file_size": 4596,
+            "width": 128,
+            "height": 127 
+        },
+        "file_id": "CAADBQADFgMAAvjGxQqllW5Mk4ZZywI",
+        "file_size": 29794 
+    } 
+}
