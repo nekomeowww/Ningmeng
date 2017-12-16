@@ -35,10 +35,6 @@ let text = {
 
         let meowmeow = /(喵)/gi
 
-        let flightNum = /(([A-Z])|(\d))(([A-Z])|(\d))((-)|( )|())((\d\d\d\d)|(\d\d\d))/gi;
-
-        this.reply(ctx, flightNum, "是航班号 /");
-
         // Greetings
 
         let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好))/gi;
