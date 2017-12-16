@@ -61,14 +61,12 @@ let tracker = {
       let flightNumInputPattern2 = /(([A-Z])|(\d))(([A-Z])|(\d))((\d\d\d\d)|(\d\d\d))/gi; // Add a desh
 
       if(flightNumInputPattern1.test(flightNum)) {
-        botlog.fatal("NotMatchFormatException: Missing Space");
         let array = flightNum.split(' ');
         let airline = array[0];
         let lineNum = array[1];
         flight = airline + "-" + lineNum;
       }
       if(flightNumInputPattern2.test(flightNum)) {
-        botlog.fatal("NotMatchFormatException: Missing Dash");
         let airline = flightNum.slice(0, 2);
         let lineNum = flightNum.replace(airline, '');
         flight = airline + "-" + lineNum;
@@ -83,7 +81,7 @@ let tracker = {
   },
   core(ctx, info, flight) {
     bot.Log.debug("用户 " + ctx.message.from.id + " 申请查询航班信息: " + info);
-
+    ctx.reply("正在申请查询航班信息: " + info[0] + " " + info[1]);
     // Link Prefix
 
     let linkPrefix;
