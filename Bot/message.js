@@ -1,4 +1,5 @@
 let bot = require('../bot');
+let nlp = require('./nlp');
 let config = require('../config');
 let control = require('../control');
 
@@ -7,16 +8,14 @@ let msgctl = {
         // Port CTX to context as a variable
         this.context = ctx;
         text.core(ctx);
-        
-        
-
     },
     context: null
 }
 
-let nlp = {
-    core() {
-
+let nlpProcessor = {
+    core(text) {
+        let tagging = nlp.tokenizer(nlp.receiver(text));
+        return JSON.stringify(tagging);
     }
 }
 
@@ -26,7 +25,6 @@ let text = {
         let dislikeall = /((?!不)(.*?)(?:讨厌)(((?:Neko)|(?: Neko))|(?:羽毛)|(?:柠檬)))|((.*?)(?:讨厌)\w(((?:Neko)|(?: Neko))|(?:羽毛)|(?:柠檬)))|((.*?)((?:不)((.*?)(?:喜欢)|(.*?)(?:讨厌)))\w((?:Neko)|(?:羽毛)))|(.*?)((?:不)(.*?)(?:喜欢))/gi;
         let lovefeather = /(?:喜欢羽毛)|(?:爱羽毛)/g;
         let loveneko = /^(?!不)(?:喜欢 Neko)|(?:喜欢Neko)/gi;
-        let talk = /^(柠檬)((?!.))|^(柠檬酱)((?!.))/g;
         let sadmeow = /(?:喵)(?:\.\.\.)+/g;
         let lemoncute = /(?:柠檬)(.*?)(?:可爱)/g;
         let lemonnotcute = /(.*?)(不)(.*?)(?:柠檬)|(?:柠檬)(.*?)(不)(.*?)/g;
@@ -37,9 +35,13 @@ let text = {
 
         let meowmeow = /(喵)/gi
 
+        let flightNum = /(([A-Z])|(\d))(([A-Z])|(\d))((-)|( )|())((\d\d\d\d)|(\d\d\d))/gi;
+
+        this.reply(ctx, flightNum, "是航班号 /");
+
         // Greetings
 
-        let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好)|(早))/gi;
+        let scmorning = /((.*)|(?:大家))((?:早安安)|(?:早安)|(?:早上好))/gi;
         let lemonmorning = /((柠檬酱)|(?:柠檬))((?:早安安)|(?:早安)|(?:早上好)|(?:早))/g;
         let enmorning = /((?:Good Morning))(\w|((.*)(?:.*)))/gi;
 
@@ -58,7 +60,6 @@ let text = {
         this.reply(ctx, dislikeall, "喵...怎么这样...")
         this.reply(ctx, lovefeather, '好耶 /');
         this.reply(ctx, loveneko, "Neko 知道的话会超开心的！")
-        this.reply(ctx, talk, "柠檬酱在的喔 /");
         this.reply(ctx, sadmeow, "喵...怎么了吗...");
         this.reply(ctx, /(?:咕噜)/g, "咕噜咕噜咕噜");
         this.reply(ctx, lemonnotcute, "喵...柠檬做错惹什么嘛...（哭哭");
@@ -102,4 +103,5 @@ let text = {
     }
 }
 
-module.exports = msgctl;
+exports.msgctl = msgctl;
+exports.nlpProcessor = nlpProcessor;
