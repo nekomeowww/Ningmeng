@@ -1,3 +1,4 @@
+let bot = require('../bot');
 let config = require('../config');
 let control = require('../control');
 
@@ -6,6 +7,7 @@ let msgctl = {
         // Port CTX to context as a variable
         this.context = ctx;
         text.core(ctx);
+        
         
 
     },
@@ -53,44 +55,46 @@ let text = {
         let lemonevening = /((柠檬酱)|(?:柠檬))((?:晚上好)|(?:晚好))/gi;
         let enevening = /((?:Good Evening))(\w|((.*)(?:.*)))/gi;
 
-        ctx.reply(this.match(dislikeall, "喵...怎么这样..."));
-        ctx.reply(this.match(lovefeather, '好耶 /'));
-        ctx.reply(this.match(loveneko, "Neko 知道的话会超开心的！"));
-        ctx.reply(this.match(talk, "柠檬酱在的喔 /"));
-        ctx.reply(this.match(sadmeow, "喵...怎么了吗..."));
-        ctx.reply(this.match(/(?:咕噜)/g, "咕噜咕噜咕噜"));
-        ctx.reply(this.match(lemonnotcute, "喵...柠檬做错惹什么嘛...（哭哭"));
-        ctx.reply(this.match(lemoncute, "啊呜啊呜(捂脸)"));
-        ctx.reply(this.match(lemonlemonle, "咕噜咕噜~ 要做什么啦！"));
-        ctx.reply(this.match(lemonletsplay, "(竖起耳朵) 柠檬也想玩呢，可是 Neko 说要继续研究心的东西什么的...弄完这些工作才能玩呢。抱歉啦~"));
-        ctx.reply(this.match(hugneeded, "啊呜啊呜，抱紧紧...（顺毛）"));
-        ctx.reply(this.match(tiredforthis, "揉揉...实在太累的话就休息一下呢喵..."));
-        ctx.reply(this.match(meowmeow, "喵~"));
+        this.reply(ctx, dislikeall, "喵...怎么这样...")
+        this.reply(ctx, lovefeather, '好耶 /');
+        this.reply(ctx, loveneko, "Neko 知道的话会超开心的！")
+        this.reply(ctx, talk, "柠檬酱在的喔 /");
+        this.reply(ctx, sadmeow, "喵...怎么了吗...");
+        this.reply(ctx, /(?:咕噜)/g, "咕噜咕噜咕噜");
+        this.reply(ctx, lemonnotcute, "喵...柠檬做错惹什么嘛...（哭哭");
+        this.reply(ctx, lemoncute, "啊呜啊呜(捂脸)");
+        this.reply(ctx, lemonlemonle, "咕噜咕噜~ 要做什么啦！");
+        this.reply(ctx, lemonletsplay, "(竖起耳朵) 柠檬也想玩呢，可是 Neko 说要继续研究心的东西什么的...弄完这些工作才能玩呢。抱歉啦~");
+        this.reply(ctx, hugneeded, "啊呜啊呜，抱紧紧...（顺毛）");
+        this.reply(ctx, tiredforthis, "揉揉...实在太累的话就休息一下呢喵...");
+        this.reply(ctx, meowmeow, "喵~");
         
 
-        ctx.reply(this.match(lemonmorning, "喵~早安"));
-        ctx.reply(this.match(scmorning, "早安喔"));
-        ctx.reply(this.match(enmorning, "Morning!"));
+        this.reply(ctx, lemonmorning, "喵~早安");
+        this.reply(ctx, scmorning, "早安喔");
+        this.reply(ctx, enmorning, "Morning!");
 
-        ctx.reply(this.match(lemonafternoon, "咕噜咕噜，午安安，有闲暇时间的话记得休息放松一下呢~"));
-        ctx.reply(this.match(scafternoon, "已经过去大半天了呢，午安喵"));
-        ctx.reply(this.match(enafternoon, "Good afternoon! Finishing up with all your work?"));
-
-
-        ctx.reply(this.match(lemonnight, "嗯喵，晚安。祝你做个好梦呢~"));
-        ctx.reply(this.match(scnight, "晚安喵，好好休息哦"));
-        ctx.reply(this.match(ennight, "Good night! Wish you would have a sweet dream :)"));
+        this.reply(ctx, lemonafternoon, "咕噜咕噜，午安安，有闲暇时间的话记得休息放松一下呢~");
+        this.reply(ctx, scafternoon, "已经过去大半天了呢，午安喵");
+        this.reply(ctx, enafternoon, "Good afternoon! Finishing up with all your work?");
 
 
-        ctx.reply(this.match(lemonevening, "喵喵，晚上好喔，柠檬在研究新奇的东西呢w"));
-        ctx.reply(this.match(scevening, "晚上好，今天过得怎么样呢？"));
-        ctx.reply(this.match(enevening, "Good evening! How's it going today?"));
+        this.reply(ctx, lemonnight, "嗯喵，晚安。祝你做个好梦呢~");
+        this.reply(ctx, scnight, "晚安喵，好好休息哦");
+        this.reply(ctx, ennight, "Good night! Wish you would have a sweet dream :)");
 
+
+        this.reply(ctx, lemonevening, "喵喵，晚上好喔，柠檬在研究新奇的东西呢w");
+        this.reply(ctx, scevening, "晚上好，今天过得怎么样呢？");
+        this.reply(ctx, enevening, "Good evening! How's it going today?");
+        
     },
-    match: (textPattern, textReply) => {
-        let textContext = msgctl.context;
-        if(textPattern.test(textContext.message.text)) {
-            return textReply;
+    reply: (ctx, textPattern, textReply) => {
+        let botLog = bot.Log;
+        if(textPattern.test(ctx.message.text)) {
+            ctx.reply(textReply)
+            botLog.debug("回复至: " + ctx.message.from.id + " - 成功 | 匹配: " + textPattern[Symbol.match](ctx.message.text));
+            return;
         }
         else{
             return;
