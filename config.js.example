@@ -1,17 +1,20 @@
 var config = {
-    token : "Put Your API Key Here",
-    username: "Bot username"
+    token : "API Key Here",
+    nickname : "Nickname for your Bot",
+    username : "Username for your Bot",
     webhook : {
-        url: "Your Webserver URL",
-        path: "Your Webserver Path",
-        port: Your Webserver Port
+        url: "Webhook url here",
+        path: "Webhook path here",
+        port: Webhook port here
     },
     proxy : "127.0.0.1:1087",
     plugins: {
         flightTrack: {
-            enable: false,
+            enable: true,
             version: "0.1.0",
-            locale: "en-US" //Options: zh-CHS (Simplified Chinese), zh-CHT (Traditional Chinese), en-US (English: United States)
+            locale: "en-US" //Options: zh-CHS (Simplified Chinese), 
+                            //          zh-CHT (Traditional Chinese), 
+                            //          en-US (English: United States)
 
         }
     }
