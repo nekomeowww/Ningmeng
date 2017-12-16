@@ -29,7 +29,6 @@ let plugin = {
 let tracker = {
   command(ctx) {
     let data = control.command.commandCheck(ctx);
-    bot.Log.debug(data);
 
     let flightNumPattern = /(([A-Z])|(\d))(([A-Z])|(\d))((-)|( )|())((\d\d\d\d)|(\d\d\d))/gi;
     let flightNumInputPattern = /(([A-Z])|(\d))(([A-Z])|(\d))(-)((\d\d\d\d)|(\d\d\d))/gi;
@@ -44,8 +43,6 @@ let tracker = {
 
     let Time = new Date();
     let CurrentTime = Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2) + "-" + ("0" + Time.getDate()).slice(-2);
-    
-    bot.Log.debug(CurrentTime);
 
     let date;
     let datePattern = /(\d\d\d\d)-(\d\d)-(\d\d)/g;
@@ -57,7 +54,6 @@ let tracker = {
     let flight;
     let botlog = bot.Log;
     flightNum += flightData
-    botlog.debug(typeof(flightNum));
 
     if(!flightNumInputPattern.test(flightNum)) {
 
