@@ -83,7 +83,7 @@ let tracker = {
     let result = this.core(ctx, info, data);
   },
   core(ctx, info, flight) {
-    bot.Log.debug("用户 " + ctx.message.from.id + " 申请查询航班信息: " + info[0] + "" + info[1]);
+    bot.Log.debug("用户 " + ctx.message.from.id + " 申请查询航班信息: " + info[0] + " " + info[1]);
     ctx.reply("正在申请查询航班信息: " + info[0]);
 
     // Link Prefix
@@ -114,7 +114,10 @@ let tracker = {
       
       var $ = cheerio.load(htmlString);
       var flightStatus = $('div.statusLines').text().split('\n');
-
+      if(flightStatus[1] == undefined) {
+        ctx.reply("找不到这个航班呢喵 qwq");
+        return;
+      }
       // Reply to user
 
       let flight = {
