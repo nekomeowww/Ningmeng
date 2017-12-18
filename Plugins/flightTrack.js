@@ -115,6 +115,7 @@ let tracker = {
       var $ = cheerio.load(htmlString);
       var flightStatus = $('div.statusLines').text().split('\n');
       if(flightStatus[1] == undefined) {
+        bot.Log.info("无该航班信息。");
         ctx.reply("找不到这个航班呢喵 qwq");
         return;
       }
