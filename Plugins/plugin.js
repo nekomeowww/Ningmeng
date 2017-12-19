@@ -1,3 +1,4 @@
+let bot = require('../bot');
 let control = require('../control');
 
 // Plugins
@@ -5,9 +6,13 @@ let control = require('../control');
 let flightTrack = require('./flightTrack');
 
 let plugin = {
-    control() {
-        flightTrack
+    control(ctx) {
+        flightTrack.core(ctx);
+        bot.Log.info();
 
+    },
+    track(ctx) {
+        flightTrack.core(ctx);
     }
 }
 
