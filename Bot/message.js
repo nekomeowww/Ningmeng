@@ -6,10 +6,9 @@ let control = require('../control');
 let msgctl = {
     core(ctx) {
         // Port CTX to context as a variable
-        this.context = ctx;
         text.core(ctx);
-    },
-    context: null
+        return;
+    }
 }
 
 let nlpProcessor = {
@@ -32,8 +31,7 @@ let text = {
         let lemonletsplay = /((?:柠檬)|(柠檬酱))(?:来玩)/g;
         let hugneeded = /(?:要抱)((抱)|(.*))/gi;
         let tiredforthis = /(^(.*)(?:累))/gi;
-
-        let meowmeow = /(喵)/gi
+        let meowmeow = /(喵~)/gi
 
         // Greetings
 
@@ -65,7 +63,6 @@ let text = {
         this.reply(ctx, hugneeded, "啊呜啊呜，抱紧紧...（顺毛）");
         this.reply(ctx, tiredforthis, "揉揉...实在太累的话就休息一下呢喵...");
         this.reply(ctx, meowmeow, "喵~");
-        
 
         this.reply(ctx, lemonmorning, "喵~早安");
         this.reply(ctx, scmorning, "早安喔");
@@ -75,28 +72,35 @@ let text = {
         this.reply(ctx, scafternoon, "已经过去大半天了呢，午安喵");
         this.reply(ctx, enafternoon, "Good afternoon! Finishing up with all your work?");
 
-
         this.reply(ctx, lemonnight, "嗯喵，晚安。祝你做个好梦呢~");
         this.reply(ctx, scnight, "晚安喵，好好休息哦");
         this.reply(ctx, ennight, "Good night! Wish you would have a sweet dream :)");
-
 
         this.reply(ctx, lemonevening, "喵喵，晚上好喔，柠檬在研究新奇的东西呢w");
         this.reply(ctx, scevening, "晚上好，今天过得怎么样呢？");
         this.reply(ctx, enevening, "Good evening! How's it going today?");
         
     },
-    reply: (ctx, textPattern, textReply) => {
+    reply(ctx, textPattern, textReply) {
         let botLog = bot.Log;
-        if(textPattern.test(ctx.message.text)) {
-            ctx.reply(textReply)
-            botLog.debug("回复至: " + ctx.message.from.id + " - 成功 | 匹配: " + textPattern[Symbol.match](ctx.message.text));
+        if(this.count >= 1) {
+            this.count = 0;
             return;
         }
-        else{
-            return;
+        else if(this.count == 0) {
+            if(textPattern.test(ctx.message.text)) {
+                this.count ++;
+                ctx.reply(textReply);
+                botLog.debug("回复至: " + ctx.message.from.id + " - 成功 | 匹配: " + textPattern[Symbol.match](ctx.message.text));
+                return;
+            }
+            else{
+                return;
+            }
         }
-    }
+        
+    },
+    count: 0
 }
 
 exports.msgctl = msgctl;
