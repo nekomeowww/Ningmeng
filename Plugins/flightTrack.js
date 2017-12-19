@@ -13,6 +13,7 @@ let plugin = {
       this.start(ctx);
     }
     else {
+      bot.Log.warning("flightTrack 未启用，用户无法使用该插件。");
       return ctx.reply("该插件未启用。");
     }
   },
@@ -41,18 +42,21 @@ let tracker = {
 
     let Time = new Date();
     let CurrentTime = Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2) + "-" + ("0" + Time.getDate()).slice(-2);
+    let CurrentTimeInfo = Time.getFullYear() + ("0"+(Time.getMonth()+1)).slice(-2) + ("0" + Time.getDate()).slice(-2)
 
-    let date;
+    let date = new String("");
     let datePattern = /(\d\d\d\d)-(\d\d)-(\d\d)/g;
     date = datePattern[Symbol.match](data);
+    bot.Log.debug(date);
+    let dateInfo = date[0].replace("-", "");
     if(!date || date == null) {
       date = CurrentTime;
     }
-
-    let yearDate = +CurrentTime.substr(0, 4),     // get the year
-        monthDate = +CurrentTime.substr(5, 2) - 1, // get the month
-        dayDate = +CurrentTime.substr(8, 2),     // get the date of the month
-        newDateInfo = new Date(yearDate, monthDate, dayDate);
+    let dateRange = CurrentTimeInfo + 6;
+    if(dateInfo > dateRange) {
+      ctx.reply("不能查询那个日期的航班喔，只能查询最近 7 天的航班呢w \n很抱歉啦，当然 Neko 也有正在尽力寻找其他解决办法呢w");
+      return;
+    }
 
     let flight;
     let botlog = bot.Log;
@@ -115,7 +119,7 @@ let tracker = {
       var $ = cheerio.load(htmlString);
       var flightStatus = $('div.statusLines').text().split('\n');
       if(flightStatus[1] == undefined) {
-        bot.Log.info("无该航班信息。");
+        bot.Log.warning("无该航班信息。");
         ctx.reply("找不到这个航班呢喵 qwq");
         return;
       }
