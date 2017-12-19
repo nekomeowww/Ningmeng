@@ -24,6 +24,8 @@ let core = {
         bot.Bot.command(command.register('/progynova'), (ctx) => ctx.reply("是甜甜的糖糖! "));
         bot.Bot.command(command.register('/androcur'), (ctx) => ctx.reply("是白色的糖糖！"));
         bot.Bot.command(command.register('/estrofem'), (ctx) => ctx.reply("是蓝色的糖糖！"));
+        bot.Bot.command(command.register('/proluton'), (ctx) => ctx.reply("是粘稠的汁液！"));
+        bot.Bot.command(command.register('/progynondepot'), (ctx) => ctx.reply("是可以变成女孩子的魔法药水！"));
         bot.Bot.command(command.register('/pat'), (ctx) => ctx.reply("（呼噜呼噜声"));
 
         // Context Processing
