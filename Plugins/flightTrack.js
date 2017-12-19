@@ -47,15 +47,17 @@ let tracker = {
     let date = new String("");
     let datePattern = /(\d\d\d\d)-(\d\d)-(\d\d)/g;
     date = datePattern[Symbol.match](data);
-    bot.Log.debug(date);
-    let dateInfo = date[0].replace("-", "");
+    let dateInfo;
     if(!date || date == null) {
       date = CurrentTime;
     }
-    let dateRange = CurrentTimeInfo + 6;
-    if(dateInfo > dateRange) {
-      ctx.reply("不能查询那个日期的航班喔，只能查询最近 7 天的航班呢w \n很抱歉啦，当然 Neko 也有正在尽力寻找其他解决办法呢w");
-      return;
+    else {
+      dateInfo = date[0].replace("-", "");
+      let dateRange = CurrentTimeInfo + 6;
+      if(dateInfo > dateRange) {
+        ctx.reply("不能查询那个日期的航班喔，只能查询最近 7 天的航班呢w \n很抱歉啦，当然 Neko 也有正在尽力寻找其他解决办法呢w");
+        return;
+      }
     }
 
     let flight;
