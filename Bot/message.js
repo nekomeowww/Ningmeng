@@ -12,6 +12,10 @@ let msgctl = {
 }
 
 let nlpProcessor = {
+    command(ctx) {
+        let text = control.command.commandCheck(ctx);
+        ctx.reply(this.core(text));
+    },
     core(text) {
         let tagging = nlp.tokenizer(nlp.receiver(text));
         return JSON.stringify(tagging);
