@@ -13,7 +13,7 @@ let plugin = {
       this.start(ctx);
     }
     else {
-      return "该插件未启用。";
+      return ctx.reply("该插件未启用。");
     }
   },
   start: (ctx) => {
