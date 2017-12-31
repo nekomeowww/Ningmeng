@@ -22,7 +22,7 @@ let CurrentTime = Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2)
 
 // Logger
 
-let fileName = "./log/NingmengBot-" + CurrentTime + ".log";
+let fileName = "./log/" + config.username + "-" + CurrentTime + ".log";
 
 log4js.configure({
     appenders: {
