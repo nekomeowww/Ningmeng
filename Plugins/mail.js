@@ -58,7 +58,7 @@ let plugin = {
                 subject: 'Hello, ' + config.username,
                 text: config.nickname + '来和你问好啦~',
                 //html: '<b>' + config.nickname + '现在已经设置好啦，邮件功能已经完全没问题了呢。</b>' //For Testing Usage
-                html: "<b>" + config.nickname + "'来和你问好啦~'</b>"
+                html: "<b>" + config.nickname + "来和你问好啦~</b>"
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
