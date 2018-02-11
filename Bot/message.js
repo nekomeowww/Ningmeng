@@ -36,6 +36,8 @@ let text = {
         let hugneeded = /(?:要抱)((抱)|(.*))/gi;
         let tiredforthis = /(^(.*)(?:累))/gi;
         let meowmeow = /(喵~)/gi
+        let dumbningmeng = /(柠檬)(()|(是))((?:笨蛋)|(?:讨厌)|(?:大笨蛋))/gi
+        let hugningmeng = /((?:抱抱)|(?:摸摸))(柠檬)/gi
 
         // Greetings
 
@@ -63,10 +65,12 @@ let text = {
         this.reply(ctx, lemonnotcute, "喵...柠檬做错惹什么嘛...（哭哭");
         this.reply(ctx, lemoncute, "啊呜啊呜(捂脸)");
         this.reply(ctx, lemonlemonle, "咕噜咕噜~ 要做什么啦！");
-        this.reply(ctx, lemonletsplay, "(竖起耳朵) 柠檬也想玩呢，可是 Neko 说要继续研究心的东西什么的...弄完这些工作才能玩呢。抱歉啦~");
+        this.reply(ctx, lemonletsplay, "(竖起耳朵) 柠檬也想玩呢，可是 Neko 说要继续研究新的东西什么的...弄完这些工作才能玩呢。抱歉啦~");
         this.reply(ctx, hugneeded, "啊呜啊呜，抱紧紧...（顺毛）");
         this.reply(ctx, tiredforthis, "揉揉...实在太累的话就休息一下呢喵...");
         this.reply(ctx, meowmeow, "喵~");
+        this.reply(ctx, dumbningmeng, "呜...柠檬对不起呢...有什么对不起你的地方吗......而且...明明是主人的错嘛！")
+        this.reply(ctx, hugningmeng, "喵...扑过去抱住 >_<");
 
         this.reply(ctx, lemonmorning, "喵~早安");
         this.reply(ctx, scmorning, "早安喔");
