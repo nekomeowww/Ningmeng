@@ -10,12 +10,26 @@ var config = {
     proxy : "127.0.0.1:1087",
     plugins: {
         flightTrack: {
+            name: "Flight Track",
             enable: true,
             version: "0.1.0",
-            locale: "en-US" //Options: zh-CHS (Simplified Chinese), 
-                            //          zh-CHT (Traditional Chinese), 
-                            //          en-US (English: United States)
-
+            description: "This is a flight tracking plugin.",
+            locale: "en-US"  //Options:  zh-CN (Simplified Chinese), 
+                             //          zh-TW (Traditional Chinese), 
+                             //          en-US (English: United States)
+        },
+        mail: {
+            name: "Mail"
+            enable: true,
+            version: "0.1.0",
+            description: "This is a mailing plugin.",
+            users: [
+                {
+                    hostname: "Your SMTP host server",
+                    username: "Your Username",
+                    password: "Password"
+                }
+            ]
         }
     }
 }

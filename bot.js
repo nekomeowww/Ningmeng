@@ -10,6 +10,8 @@ let config = require('./config');
 let core = require('./control');
 let plugin = require('./Plugins/plugin');
 let packageInfo = require('./package.json');
+let flightTrack = require('./Plugins/flightTrack');
+let mail = require('./Plugins/mail');
 
 // Bot Username
 
@@ -22,7 +24,7 @@ let CurrentTime = Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2)
 
 // Logger
 
-let fileName = "./log/NingmengBot-" + CurrentTime + ".log";
+let fileName = "./log/" + config.username + "-" + CurrentTime + ".log";
 
 log4js.configure({
     appenders: {
@@ -35,9 +37,21 @@ log4js.configure({
     }
 });
 
+// Header
+
 const logger = log4js.getLogger('Ningmeng');
 logger.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
 logger.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
+
+let pluginList = [
+    "已挂载插件: " + mail.pluginName + " [ 版本: " + mail.pluginVersion + " ] ",
+    "已挂载插件: " + flightTrack.pluginName + " [ 版本: " + flightTrack.pluginVersion + " ] "
+];
+for(var i = 0; i<pluginList.length; i++) {
+    logger.debug(pluginList[i]);
+};
+
+// Logger
 
 let Log = {
     info: (text) => {

@@ -1,5 +1,6 @@
 let bot = require('../bot');
 let config = require('../config');
+let plugin = require('../Plugins/plugin');
 let control = require('../control');
 let packageInfo = require('../package.json');
 
@@ -20,23 +21,25 @@ let info = {
         let happyChat = "希望你开心喔！";
         let happyGroup = "希望你喜欢" + config.nickname + "喔！";
 
-        ctx.reply(Version);
+        let pluginList = plugin.pluginList;
 
-        bot.Log.trace(">>> INFO -" + ctx.message.date + "- Report");
-        bot.Log.trace(messageId);
-        bot.Log.trace(messageType);
-        bot.Log.trace(senderId);
+        ctx.reply(Version + "\n" + "\n" + pluginList[0] + "\n" + pluginList[1]);
+
+        bot.Log.debug(">>> INFO -" + ctx.message.date + "- Report");
+        bot.Log.debug(messageId);
+        bot.Log.debug(messageType);
+        bot.Log.debug(senderId);
 
         if(ctx.message.chat.type == 'private') {
             ctx.reply(happyChat);
-            bot.Log.trace(">>> INFO Report END <<<");
+            bot.Log.debug(">>> INFO Report END <<<");
         }
         else {
             ctx.reply(happyGroup);
 
-            bot.Log.trace(chatTitle);
-            bot.Log.trace(chatId);
-            bot.Log.trace(">>> INFO Report END <<<");
+            bot.Log.debug(chatTitle);
+            bot.Log.debug(chatId);
+            bot.Log.debug(">>> INFO Report END <<<");
         }
     }
 }
