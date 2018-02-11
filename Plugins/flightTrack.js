@@ -1,9 +1,20 @@
+// Dependencies
+
 let requestPromise = require('request-promise');
 let cheerio = require('cheerio');
+
+// Local Files
 
 let bot = require('../bot');
 let config = require('../config');
 let control = require('../control');
+
+// Plugin Header
+
+let pluginName = config.plugins.flightTrack.name;
+let pluginVersion = config.plugins.flightTrack.version;
+
+// Plugin Body
 
 let flightStatus;
 
@@ -167,7 +178,9 @@ let tracker = {
   }
 }
 
-module.exports = plugin;
+exports.pluginName = pluginName;
+exports.pluginVersion = pluginVersion;
+exports.plugin = plugin;
 
 // Simplified Chinese
 // https://www.cn.kayak.com/tracker/FLIGHT_NUMBER/FLIGHT_DATE
