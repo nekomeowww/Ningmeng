@@ -863,6 +863,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
+jjg-ping@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jjg-ping/-/jjg-ping-1.0.1.tgz#c861831f7a5f331541e2f80eab7745f8da9ddc13"
+
 jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"

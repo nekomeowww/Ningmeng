@@ -42,33 +42,43 @@ let plugin = {
         });
 
         let emailTo = control.command.commandCheck(ctx);
-
+        this.email(emailTo, "NingmengBot", "Hello, NingmengBot", "Hello, <b>NingmengBot</b>");
+    },
+    email(mailTarget, emailSubject, content, htmlContent) {
+        let transporter = nodemailer.createTransport({
+            host: hostname,
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: username, // generated ethereal user
+                pass: password  // generated ethereal password
+            }
+        });
+    
         // Check Email
-
+    
         let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         let emailTarget;
         let botlog = bot.Log;
-        if(emailPattern.test(String(emailTo).toLowerCase())) {
-            
-            emailTarget = emailTo.toLowerCase();
-
+        if(emailPattern.test(String(mailTarget).toLowerCase())) {
+                
+            emailTarget = mailTarget.toLowerCase();
+    
             let mailOptions = {
                 from: config.nickname + "<" + username + ">",
                 to: emailTarget,
-                subject: 'Hello, ' + config.username,
-                text: config.nickname + '来和你问好啦~',
-                //html: '<b>' + config.nickname + '现在已经设置好啦，邮件功能已经完全没问题了呢。</b>' //For Testing Usage
-                html: "<b>" + config.nickname + "来和你问好啦~</b>"
+                subject: config.username + " " + emailSubject,
+                text: content,
+                html: htmlContent
             };
-
+    
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     return botlog.fatal(error);
                 }
-            
+                
                 botlog.debug(config.nickname + "已经把邮件寄送给 " + emailTarget + " 啦！");
-                ctx.reply(config.nickname + "已经把邮件寄送给你指定的人啦！");
-            
+                
                 /*
                 console.log('Message sent: %s', info.messageId);
                 console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
@@ -76,7 +86,7 @@ let plugin = {
             });
         }
         else {
-            ctx.reply("邮件格式不正确，记得检查一下呢")
+
         }
     }
 }

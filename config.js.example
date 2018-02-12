@@ -1,4 +1,6 @@
 var config = {
+    mode: "webhook", //webhook or polling
+    admin: "root@ayaka.moe",
     token : "API Key Here",
     nickname : "Nickname for your Bot",
     username : "Username for your Bot",
@@ -29,6 +31,24 @@ var config = {
                     username: "Your Username",
                     password: "Password"
                 }
+            ]
+        },
+        watchdog: {
+            name: "Watch Dog",
+            enable: true,
+            version: "0.1.0",
+            description: "Monitoring websites and pings",
+            https: [
+                "https://api.ayaka.moe",
+                "https://git.ayaka.moe",
+                "https://community.ayaka.moe",
+                "https://download.ayaka.moe",
+                "https://horizon.ayaka.moe",
+                "https://cloud.ayaka.moe",
+                "https://drive.ayaka.moe"
+            ],
+            ips: [
+
             ]
         }
     }

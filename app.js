@@ -22,6 +22,7 @@ else if(config.mode === "webhook") {
 
     let bot = require('./bot');
     let config = require('./config');
+    let watchdog = require('./Plugins/watchdog');
 
     let webhookUrl = config.webhook.url;
     let webhookPath = config.webhook.path;
@@ -33,38 +34,19 @@ else if(config.mode === "webhook") {
 
     bot.Bot.telegram.setWebhook(webhookUrl + webhookPath);
 
-    let getHEAD = async (url) => {
-        try {
-            await got.head(url);
-            bot.Log.trace(url+ ' OK!');
-        }
-        catch (err) { 
-            bot.Log.fatal(err)      
-        }
-    }
-
     app.use(koaBody());
     app.use((ctx, next) => ctx.method === 'POST' || ctx.url === webhookPath
         ? bot.Bot.handleUpdate(ctx.request.body, ctx.response)
         : next()
-    );
+    )
 
     app.use(async (ctx,next) => {
-        if(ctx.method === 'GET' || ctx.url === '/watchDog')
-        {
+        if(ctx.method === 'GET' && ctx.url === '/watchDog') {
             ctx.statusCode = 200
-            await getHEAD("https://api.ayaka.moe")
-            await getHEAD("https://git.ayaka.moe")
-            await getHEAD("https://community.ayaka.moe");
-            await getHEAD("https://download.ayaka.moe")
-            await getHEAD("https://horizon.ayaka.moe")
-            await getHEAD("https://cloud.ayaka.moe")
-            await getHEAD("https://drive.ayaka.moe")
+            await Promise.all(watchdog.promises.map(watchdog.getHEAD));
         }
         await next()
-    }
-)
-
+    })
 
     app.listen(webhookPort);
     }
