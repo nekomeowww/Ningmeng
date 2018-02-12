@@ -36,7 +36,7 @@ else if(config.mode === "webhook") {
     let getHEAD = async (url) => {
         try {
             await got.head(url);
-            bot.Log.trace(url+ 'OK!');
+            bot.Log.trace(url+ ' OK!');
         }
         catch (err) { 
             bot.Log.fatal(err)      
