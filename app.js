@@ -43,7 +43,8 @@ else if(config.mode === "webhook") {
     app.use(async (ctx,next) => {
         if(ctx.method === 'GET' && ctx.url === '/watchDog') {
             ctx.statusCode = 200
-            await Promise.all(watchdog.promises.map(watchdog.getHEAD));
+            await watchdog.getFullAPI(config.plugins.watchdog.cachet.site + "/api/v1/components");
+            //await Promise.all(watchdog.getFullAPI).catch(bot.Log.fatal.err);
         }
         await next()
     })
