@@ -1434,7 +1434,7 @@ request@2.75.x:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@^2.0.0, request@^2.74.0:
+request@>=2.27.0, request@^2.0.0, request@^2.74.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
@@ -1710,6 +1710,12 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+website-monitor@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/website-monitor/-/website-monitor-1.2.1.tgz#9f8f767a9defd4894b8e525228f2144237aded9a"
+  dependencies:
+    request ">=2.27.0"
 
 when@^3.7.7:
   version "3.7.8"
