@@ -40,8 +40,6 @@ log4js.configure({
 // Header
 
 const logger = log4js.getLogger('Ningmeng');
-logger.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
-logger.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
 
 let pluginList = [
     "已挂载插件: " + mail.pluginName + " [ 版本: " + mail.pluginVersion + " ] ",

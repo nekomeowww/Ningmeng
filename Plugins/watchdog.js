@@ -33,7 +33,7 @@ let getFullAPI = async (site) => {
 
     let callback = async (error, response, body) => {
         if (!error && response.statusCode == 200) {
-            bot.Log.debug(body);
+            //bot.Log.debug(body);
             //promises = body
         }
         else {
@@ -84,7 +84,7 @@ let update = async (componentID, statusCode) => {
 
     request(options, (error, response, body) => {
         if(error) {
-            botlog.debug(body);
+            //botlog.debug(body);
             botlog.fatal(error);
             throw new Error(error);
         }

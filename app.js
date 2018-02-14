@@ -10,11 +10,13 @@ let config = require('./config');
 bot.botctl.start();
 
 if(config.mode === "polling") {
+    bot.Log.debug("已选择 Polling")
     bot.Bot.startPolling();
 }
 else if(config.mode === "webhook") {
     // Webhook
 
+    bot.Log("已选择 Webhook")
     const Koa = require('koa');
     const koaBody = require('koa-body');
 
@@ -50,6 +52,8 @@ else if(config.mode === "webhook") {
     })
 
     app.listen(webhookPort);
+    bot.Log.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
+    bot.log.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
     }
 
 else {
