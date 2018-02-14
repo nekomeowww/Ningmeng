@@ -51,6 +51,7 @@ for(var i = 0; i<pluginList.length; i++) {
     logger.debug(pluginList[i]);
 };
 
+
 // Logger
 
 let Log = {
@@ -76,6 +77,7 @@ let Log = {
 }
 
 // Bot
+
 
 let token = config.token;
 

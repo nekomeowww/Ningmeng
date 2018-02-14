@@ -1,4 +1,6 @@
 var config = {
+    mode: "webhook", //webhook or polling
+    admin: "root@ayaka.moe",
     token : "API Key Here",
     nickname : "Nickname for your Bot",
     username : "Username for your Bot",
@@ -30,6 +32,17 @@ var config = {
                     password: "Password"
                 }
             ]
+        },
+        watchdog: {
+            name: "Watch Dog",
+            enable: true,
+            version: "0.1.0",
+            description: "Monitoring websites and pings",
+            cachet:
+                {
+                    token: "your token",
+                    site: "your status page powered by cachet"
+                }
         }
     }
 }
