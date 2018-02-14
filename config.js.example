@@ -38,18 +38,11 @@ var config = {
             enable: true,
             version: "0.1.0",
             description: "Monitoring websites and pings",
-            https: [
-                "https://api.ayaka.moe",
-                "https://git.ayaka.moe",
-                "https://community.ayaka.moe",
-                "https://download.ayaka.moe",
-                "https://horizon.ayaka.moe",
-                "https://cloud.ayaka.moe",
-                "https://drive.ayaka.moe"
-            ],
-            ips: [
-
-            ]
+            cachet:
+                {
+                    token: "your token",
+                    site: "your status page powered by cachet"
+                }
         }
     }
 }
