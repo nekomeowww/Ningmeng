@@ -33,6 +33,7 @@ let getFullAPI = async (site) => {
 
     let callback = async (error, response, body) => {
         if (!error && response.statusCode == 200) {
+            bot.Log.debug("Get Full API")
             //bot.Log.debug(body);
             //promises = body
         }
