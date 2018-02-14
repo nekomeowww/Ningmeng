@@ -13,6 +13,8 @@ if(config.mode === "polling") {
     bot.Log.debug("已选择 Polling")
     bot.Bot.startPolling();
 }
+
+/*
 else if(config.mode === "webhook") {
     // Webhook
 
@@ -51,13 +53,13 @@ else if(config.mode === "webhook") {
         await next()
     })
 
-    app.listen(webhookPort);
-    bot.Log.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
-    bot.log.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
-    }
+        app.listen(webhookPort);
+        bot.Log.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
+        bot.log.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
+}
 
 else {
     console.log("Config file invalid");
 }
-
+*/
 bot.Log.info("柠檬现在已经在线上啦！");
