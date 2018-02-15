@@ -1,6 +1,6 @@
 {
   "name": "ningmengbot",
-  "version": "0.5.0",
+  "version": "0.5.3",
   "description": "A Useless Bot made for Meaningless Person",
   "main": "app.js",
   "dependencies": {
