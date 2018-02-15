@@ -38,6 +38,7 @@ let text = {
         let meowmeow = /(喵~)/gi
         let dumbningmeng = /(柠檬)(()|(是))((?:笨蛋)|(?:讨厌)|(?:大笨蛋))/gi
         let hugningmeng = /((?:抱抱)|(?:摸摸))(柠檬)/gi
+        let thxningmeng = /谢谢((柠檬)|(柠檬酱)|(Ningmeng)|(ningmeng)|(Lemon))/gi
 
         // Greetings
 
@@ -71,6 +72,7 @@ let text = {
         this.reply(ctx, meowmeow, "喵~");
         this.reply(ctx, dumbningmeng, "呜...柠檬对不起呢...有什么对不起你的地方吗......而且...明明是主人的错嘛！")
         this.reply(ctx, hugningmeng, "喵...扑过去抱住 >_<");
+        this.reply(ctx, thxningmeng, "不用谢呢，这是我应该做的")
 
         this.reply(ctx, lemonmorning, "喵~早安");
         this.reply(ctx, scmorning, "早安喔");
