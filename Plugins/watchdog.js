@@ -92,9 +92,6 @@ let plugin = {
             if(error) {
                 bot.Log.fatal(error)
             }
-            else {
-                bot.Log.trace("已经更新到了 Ayaka Status！");
-            }
         })
     },
     async updateNode(id, statusCode) {
@@ -118,15 +115,9 @@ let plugin = {
             bot.Log.debug("Alive: " + ms);
             if (error) {
                 bot.Log.fatal(error);
-                if (error instanceof ping.RequestTimedOutError) {
-                    bot.Log.warning(target + ": Not alive (ms=" + ms + ")");
-                }
-                else {
-                    bot.Log.trace('' + ": Alive alive (ms=" + ms + ")");
-                }
             }
             else {
-                bot.Log.debug("Updating metrics...");
+                bot.Log.debug("更新图表中...");
                 var headers = {
                     'Content-Type': 'application/json;',
                     'X-Cachet-Token': config.plugins.watchdog.cachet.token

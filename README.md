@@ -2,6 +2,20 @@
 
 Now work with NingmengAPI at https://api.ayaka.moe
 
+## Installation
+```
+cd / # A directory that you have permission
+git clone https://github.com/nekomeowww/Ningmeng.git
+npm install # or yarn install
+```
+
+## Usage
+```
+cp config.js.example config.js
+# Edit the info inside config.js
+node app.js
+```
+
 ## Core
 
 ### NLP
