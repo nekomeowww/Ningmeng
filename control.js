@@ -27,6 +27,7 @@ let core = {
         bot.Bot.command(command.register('/proluton'), (ctx) => ctx.reply("是粘稠的汁液！"));
         bot.Bot.command(command.register('/progynondepot'), (ctx) => ctx.reply("是可以变成女孩子的魔法药水！"));
         bot.Bot.command(command.register('/pat'), (ctx) => ctx.reply("（呼噜呼噜声"));
+        bot.Bot.command(command.register('/status'), (ctx) => plugin.plugin.watchdog(ctx))
 
         // Context Processing
         
@@ -40,15 +41,15 @@ let core = {
             let output = "来自: ";
             if(ctx.message.from.first_name && ctx.message.from.last_name) {
                 botlog.trace(output + ctx.message.from.first_name + " " + ctx.message.from.last_name + " [ ID:" + ctx.message.from.id + " ]")
-                botlog.trace("消息:" + ctx.message.text);
+                botlog.trace("消息: " + ctx.message.text);
             }
             else if(ctx.message.from.username) {
                 botlog.trace(output + ctx.message.from.username + " [ ID:" + ctx.message.from.id + " ]")
-                botlog.trace("消息:" + ctx.message.text);                
+                botlog.trace("消息: " + ctx.message.text);                
             }
             else {
                 botlog.trace(output + " [ ID:" + ctx.message.from.id + " ]")
-                botlog.trace("消息:" + ctx.message.text);
+                botlog.trace("消息: " + ctx.message.text);
             }
 
             // Port to processor
