@@ -7,6 +7,7 @@ var config = {
     webhook : {
         url: "Webhook url here",
         path: "Webhook path here",
+        truePort: 8500,
         port: Webhook port here
     },
     proxy : "127.0.0.1:1087",
@@ -43,6 +44,12 @@ var config = {
                     token: "your token",
                     site: "your status page powered by cachet"
                 }
+        },
+        weather: {
+            name: "Weather",
+            enable: false,
+            version: "0.1.0",
+            description: "Weather reporting service"
         }
     }
 }

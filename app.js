@@ -46,11 +46,11 @@ else if(config.mode === "webhook") {
     app.use(async (ctx,next) => {
         if(ctx.method === 'GET' && ctx.url === '/watchDog') {
             ctx.statusCode = 200
-            await plugin.plugin.watchdog(ctx);
+            await plugin.plugin.watchdog();
         }
         await next()
     })
-        app.listen(webhookPort);
+        app.listen(config.webhook.truePort, "127.0.0.1");
 }
 
 else {

@@ -29,8 +29,8 @@ let plugin = {
     mail(ctx) {
         mail.plugin.core(ctx);
     },
-    watchdog(ctx) {
-        watchdog.plugin.core(ctx);
+    watchdog() {
+        watchdog.plugin.core();
     }
 }
 
