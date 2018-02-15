@@ -17,8 +17,8 @@ bot.Log.info("开始时间：" + CurrentTime + " - " + config.username + " 版�
 
 if(config.mode === "polling") {
     bot.Log.debug("已选择 Polling")
-    bot.Bot.startPolling();
     bot.botctl.start();
+    bot.Bot.startPolling();
 }
 
 else if(config.mode === "webhook") {
@@ -53,6 +53,7 @@ else if(config.mode === "webhook") {
     })
         app.listen(webhookPort);
 }
+
 else {
     console.log("Config file invalid");
 }

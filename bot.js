@@ -41,10 +41,7 @@ log4js.configure({
 
 const logger = log4js.getLogger('Ningmeng');
 
-let pluginList = [
-    "已挂载插件: " + mail.pluginName + " [ 版本: " + mail.pluginVersion + " ] ",
-    "已挂载插件: " + flightTrack.pluginName + " [ 版本: " + flightTrack.pluginVersion + " ] "
-];
+let pluginList = plugin.pluginList;
 for(var i = 0; i<pluginList.length; i++) {
     logger.debug(pluginList[i]);
 };
