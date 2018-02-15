@@ -32,13 +32,6 @@ Here is an example
 
 ```
 server {
-        listen 80;
-        # listen [::]:80;
-        server_name telegram.ayaka.moe;
-        rewrite ^ https://telegram.ayaka.moe$request_uri? permanent;
-}
-
-server {
         listen 443 ssl http2;
         # listen [::]:443 ssl;
 
