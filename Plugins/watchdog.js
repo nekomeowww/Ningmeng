@@ -4,6 +4,8 @@ const nodemailer = require('nodemailer');
 var monitor = require('website-monitor');
 const got = require('got');
 const request = require('request');
+var ping = require('net-ping');
+
 // Local Files
 
 let bot = require('../bot');
@@ -21,10 +23,9 @@ var cachetHeaders = {
 //var site = config.plugins.watchdog.cachet.site;
 
 let plugin = {
-    async core(ctx) {
-
+    async core() {
         // Get Full List of Everything
-        let body = (ctx) => {
+        let body = () => {
             let options = {
                 url: config.plugins.watchdog.cachet.site + "/api/v1/components"
             };
@@ -37,21 +38,26 @@ let plugin = {
                 else {
                     var api = JSON.parse(body)
                     for(let i = 0; i < api.data.length; i++) {
-                        if(api.data[i].link == undefined || api.data[i].link == "" || api.data[i].link == null) {
-                            bot.Log.warning(api.data[i].name + "：无链接可检测。");    
+                        let isProxy = Object.keys(api.data[i].tags);
+                        isProxy = isProxy.includes('proxy');
+                        if(isProxy) {
+                            this.updateMetrics(1, 4)
+                        }
+                        else if(api.data[i].link == undefined || api.data[i].link == "" || api.data[i].link == null) {
+                            bot.Log.warning(api.data[i].name + "：无链接可检测。");
                         }
                         else {
-                            this.watch(api.data[i].id, api.data[i].link, api.data[i].name, ctx)
+                            this.watch(api.data[i].id, api.data[i].link, api.data[i].name)
+                            this.updateMetrics(1, 4)
                         }
 
                     }
                 }
             })
         }
-        body(ctx)
-        ctx.reply("已经获取了整个的 API，快去控制台看看吧w");
+        body();
     },
-    async watch(id, url, name, ctx) {
+    async watch(id, url, name) {
         try {
             await got.head(url);
             bot.Log.trace(name + ' OK!');
@@ -59,16 +65,17 @@ let plugin = {
         }
         catch(err) {
             let botlog = bot.Log
-            bot.Log.fatal(name + " is down, Code: " + err.statusCode)
             if(err.statusCode == undefined) {
-                bot.Log.fatal("404");
+                bot.Log.fatal(name + " is down, Code: 404")
+                this.updateSite(id, 4);
             }
             else {
-                //
+                bot.Log.fatal(name + " is down, Code: " + err.statusCode)
+                this.updateSite(id, 4)
             }
         }
     },
-    async update(id, ctx) {
+    async updateSite(id, statusCode) {
         var options = { 
             method: 'PUT',
             url: 'https://status.ayaka.moe/api/v1/components/' + id,
@@ -81,18 +88,51 @@ let plugin = {
         }
         request(options, (error, response, body) => {
             if(error) {
-                
+                bot.Log.fatal(error)
             }
             else {
-                
+                bot.Log.trace("已经更新到了 Ayaka Status！");
+            }
+        })
+    },
+    async updateNode(id, statusCode) {
+
+    },
+    async updateMetrics(id, statusCode) {
+        var pingOptions = {
+            retries: 3,
+            timeout: 2000
+        };
+        
+        let target = "159.89.206.77"
+        var session = ping.createSession (pingOptions);
+        
+        session.on ("error", function (error) {
+            bot.Log.trace (error.toString ());
+        });
+        
+        session.pingHost (target, function (error, target, sent, rcvd) {
+            var ms = rcvd - sent;
+            if (error) {
+                var options = { method: 'POST',
+                url: 'https://status.ayaka.moe/api/v1/metrics/1/points',
+                body: { value: ms },
+                json: true };
+
+                request(options, function (error, response, body) {
+                if (error) bot.Log.fatal(error);
+
+                });
+                if (error instanceof ping.RequestTimedOutError) {
+                    bot.Log.warning(target + ": Not alive (ms=" + ms + ")");
+                }
+                else {
+                    bot.Log.trace('' + ": Alive alive (ms=" + ms + ")");
+                }
             }
         })
     }
 }
-
-/*
-
-*/
 
 
 // Processing the original body of the JSON api, get the information of the Cachet site data
