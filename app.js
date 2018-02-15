@@ -8,7 +8,7 @@ const koaBody = require('koa-body');
 
 let bot = require('./bot');
 let config = require('./config');
-let watchdog = require('./Plugins/watchdog');
+let plugin = require('./Plugins/plugin');
 
 let Time = new Date();
 let CurrentTime = Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2) + "-" + ("0" + Time.getDate()).slice(-2) + "-" + ("0" + Time.getHours()).slice(-2) + "-" + ("0" + Time.getMinutes()).slice(-2) + "-" + ("0" + Time.getSeconds()).slice(-2);
@@ -46,8 +46,7 @@ else if(config.mode === "webhook") {
     app.use(async (ctx,next) => {
         if(ctx.method === 'GET' && ctx.url === '/watchDog') {
             ctx.statusCode = 200
-            await watchdog.getFullAPI(config.plugins.watchdog.cachet.site + "/api/v1/components");
-            //await Promise.all(watchdog.getFullAPI).catch(bot.Log.fatal.err);
+            await plugin.plugin.watchdog(ctx);
         }
         await next()
     })
