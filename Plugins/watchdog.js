@@ -24,6 +24,7 @@ var cachetHeaders = {
 
 let plugin = {
     async core() {
+        bot.Bot.on('text', (ctx) => ctx.reply('正在更新 Ayaka Status...'))
         // Get Full List of Everything
         let body = () => {
             let options = {
@@ -41,20 +42,21 @@ let plugin = {
                         let isProxy = Object.keys(api.data[i].tags);
                         isProxy = isProxy.includes('proxy');
                         if(isProxy) {
-                            this.updateMetrics(1, 4)
+                            
                         }
                         else if(api.data[i].link == undefined || api.data[i].link == "" || api.data[i].link == null) {
                             bot.Log.warning(api.data[i].name + "：无链接可检测。");
                         }
                         else {
                             this.watch(api.data[i].id, api.data[i].link, api.data[i].name)
-                            this.updateMetrics(1, 4)
                         }
 
                     }
                 }
             })
+            bot.Bot.on('text', (ctx) => ctx.reply("更新完毕。"));
         }
+        this.updateMetrics(1, 4)
         body();
     },
     async watch(id, url, name) {
@@ -113,22 +115,39 @@ let plugin = {
         
         session.pingHost (target, function (error, target, sent, rcvd) {
             var ms = rcvd - sent;
+            bot.Log.debug("Alive: " + ms);
             if (error) {
-                var options = { method: 'POST',
-                url: 'https://status.ayaka.moe/api/v1/metrics/1/points',
-                body: { value: ms },
-                json: true };
-
-                request(options, function (error, response, body) {
-                if (error) bot.Log.fatal(error);
-
-                });
+                bot.Log.fatal(error);
                 if (error instanceof ping.RequestTimedOutError) {
                     bot.Log.warning(target + ": Not alive (ms=" + ms + ")");
                 }
                 else {
                     bot.Log.trace('' + ": Alive alive (ms=" + ms + ")");
                 }
+            }
+            else {
+                bot.Log.debug("Updating metrics...");
+                var headers = {
+                    'Content-Type': 'application/json;',
+                    'X-Cachet-Token': config.plugins.watchdog.cachet.token
+                };
+                
+                var dataString = '{"value":' + ms + '}';
+                
+                var options = {
+                    url: 'https://status.ayaka.moe/api/v1/metrics/1/points',
+                    method: 'POST',
+                    headers: headers,
+                    body: dataString
+                };
+                
+                function callback(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        
+                    }
+                }
+                
+                request(options, callback);
             }
         })
     }

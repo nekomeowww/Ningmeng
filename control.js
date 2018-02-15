@@ -27,7 +27,7 @@ let core = {
         bot.Bot.command(command.register('/proluton'), (ctx) => ctx.reply("是粘稠的汁液！"));
         bot.Bot.command(command.register('/progynondepot'), (ctx) => ctx.reply("是可以变成女孩子的魔法药水！"));
         bot.Bot.command(command.register('/pat'), (ctx) => ctx.reply("（呼噜呼噜声"));
-        bot.Bot.command(command.register('/status'), (ctx) => ctx.reply("正在更新 Ayaka Status"));
+        bot.Bot.command(command.register('/status'), (ctx) => plugin.plugin.watchdog());
 
         // Context Processing
         
