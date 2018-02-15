@@ -50,7 +50,7 @@ else if(config.mode === "webhook") {
         }
         await next()
     })
-        app.listen(webhookPort);
+        app.listen(webhookPort, "127.0.0.1");
 }
 
 else {
