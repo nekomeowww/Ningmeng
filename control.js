@@ -39,6 +39,7 @@ let core = {
         bot.Bot.on('text', (ctx) => {
 
             let output = "来自: ";
+            /*
             if(ctx.message.from.first_name && ctx.message.from.last_name) {
                 botlog.trace(output + ctx.message.from.first_name + " " + ctx.message.from.last_name + " [ ID:" + ctx.message.from.id + " ]")
                 botlog.trace("消息: " + ctx.message.text);
@@ -51,6 +52,7 @@ let core = {
                 botlog.trace(output + " [ ID:" + ctx.message.from.id + " ]")
                 botlog.trace("消息: " + ctx.message.text);
             }
+            */
 
             // Port to processor
 
