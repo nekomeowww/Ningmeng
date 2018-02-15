@@ -10,70 +10,68 @@ let bot = require('../bot');
 let email = require('./mail');
 let config = require('../config');
 
-var promises;
-
-//var site = config.plugins.watchdog.cachet.site;
-
-let getURL = async (url) => {
-    await watch(url);
-    getFullAPI();
-}
+let pluginName = config.plugins.watchdog.name;
+let pluginVersion = config.plugins.watchdog.version;
 
 var cachetHeaders = {
     'Content-Type': 'application/json;',
     'X-Cachet-Token': config.plugins.watchdog.cachet.token
 };
 
-// Processing the original body of the JSON api, get the information of the Cachet site data
+//var site = config.plugins.watchdog.cachet.site;
 
-let getFullAPI = async (site) => {
-    let options = {
-        url: site
-    };
+let plugin = {
+    async core(ctx) {
 
-    let callback = async (error, response, body) => {
-        if (!error && response.statusCode == 200) {
-            bot.Log.debug("Get Full API")
-            //bot.Log.debug(body);
-            //promises = body
+        // Get Full List of Everything
+        let body = (ctx) => {
+            let options = {
+                url: config.plugins.watchdog.cachet.site + "/api/v1/components"
+            };
+            request(options, (error, response, body) => {
+                if(error) {
+                    //botlog.debug(body);
+                    bot.Log.fatal(error);
+                    throw new Error(error);
+                }
+                else {
+                    var api = JSON.parse(body)
+                    for(let i = 0; i < api.data.length; i++) {
+                        if(api.data[i].link == undefined || api.data[i].link == "" || api.data[i].link == null) {
+                            bot.Log.warning(api.data[i].name + "：无链接可检测。");    
+                        }
+                        else {
+                            this.watch(api.data[i].id, api.data[i].link, api.data[i].name, ctx)
+                        }
+
+                    }
+                }
+            })
         }
-        else {
-            bot.Log.fatal(error)
+        body(ctx)
+        ctx.reply("已经获取了整个的 API，快去控制台看看吧w");
+    },
+    async watch(id, url, name, ctx) {
+        try {
+            await got.head(url);
+            bot.Log.trace(name + ' OK!');
+            
         }
-    }
-    request(options, callback);
-}
-
-
-// Watch part to watch the url and processing them
-
-let watch = (async (url) => {
-    try {
-        await got.head(url);
-        var id = promises.indexOf(url)+1;
-        bot.Log.trace(url+ ' OK!');
-        update(id, 1);
-    }
-    catch(err) {
-        let botlog = bot.Log
-        bot.Log.fatal(url + " is down, Code: " + err.statusCode)
-        var id = promises.indexOf(url)+1;
-        if(err.statusCode == undefined && counter <= 0) {
-            await update(id, 4);
+        catch(err) {
+            let botlog = bot.Log
+            bot.Log.fatal(name + " is down, Code: " + err.statusCode)
+            if(err.statusCode == undefined) {
+                bot.Log.fatal("404");
+            }
+            else {
+                //
+            }
         }
-        else if(counter <= 0){
-            await update(id, 4);
-        }
-    }
-})
-
-let update = async (componentID, statusCode) => {
-    let botlog = bot.Log;
-    for(var i = 0; i< Object.keys(config.plugins.watchdog.https).length;i++) {
-        var options = 
-        { 
+    },
+    async update(id, ctx) {
+        var options = { 
             method: 'PUT',
-            url: 'https://status.ayaka.moe/api/v1/components/' + componentID,
+            url: 'https://status.ayaka.moe/api/v1/components/' + id,
             headers: cachetHeaders,
             body: 
             { 
@@ -81,19 +79,25 @@ let update = async (componentID, statusCode) => {
             },
             json: true 
         }
+        request(options, (error, response, body) => {
+            if(error) {
+                
+            }
+            else {
+                
+            }
+        })
     }
-
-    request(options, (error, response, body) => {
-        if(error) {
-            //botlog.debug(body);
-            botlog.fatal(error);
-            throw new Error(error);
-        }
-        else {
-            botlog.debug("Updated the Ayaka Status");
-        }
-    })
 }
+
+/*
+
+*/
+
+
+// Processing the original body of the JSON api, get the information of the Cachet site data
+
+// Watch part to watch the url and processing them
 
 /*
 let watchdog = {
@@ -114,36 +118,7 @@ let watchdog = {
     }
 }
 */
-/*
 
-我们需要先做一个 Email 的 Fallback 方式，这样如果遇到了 HTTP 200 以外的 HTTP Code 就视为 需要 Call 这个 Function 来发送邮件
-但是这个发送邮件只会寄送一次，然后这里开始计算服务器到底离线了多久，这样才可以正确返回
-
-*/
-
-/*
-
-try {
-        
-    }
-    catch(err) {
-
-    }
-    
-
-    let mailctl = () => {
-        
-    }
-
-    botlog.info("No response Email Sent");
-    //email.plugin.email(config.admin, "Server is Down", url + " is Down, Code " + err.statusCode, url + " is Down, <b>No Response</b>");
-    counter++
-
-    botlog.info("Fail Email Sent")
-    //email.plugin.email(config.admin, "Server is Down", url + " is Down, Code " + err.statusCode, url + " is Down, <b>Code " + err.statusCode + "</b>");
-    counter++
-
-*/
-
-exports.getFullAPI = getFullAPI
-exports.promises = promises;
+exports.pluginName = pluginName;
+exports.pluginVersion = pluginVersion;
+exports.plugin = plugin;
