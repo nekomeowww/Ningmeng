@@ -61,7 +61,7 @@ let plugin = {
         try {
             await got.head(url);
             bot.Log.trace(name + ' OK!');
-            
+            this.updateSite(id, 1)
         }
         catch(err) {
             let botlog = bot.Log
