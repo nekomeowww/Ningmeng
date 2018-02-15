@@ -46,7 +46,7 @@ else if(config.mode === "webhook") {
     app.use(async (ctx,next) => {
         if(ctx.method === 'GET' && ctx.url === '/watchDog') {
             ctx.statusCode = 200
-            await plugin.plugin.watchdog(ctx);
+            await plugin.plugin.watchdog();
         }
         await next()
     })
