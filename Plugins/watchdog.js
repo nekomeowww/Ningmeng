@@ -24,7 +24,7 @@ var cachetHeaders = {
 
 let plugin = {
     async core() {
-        bot.Bot.on('text', (ctx) => ctx.reply('正在更新 Ayaka Status...'))
+        bot.Bot.use(async (ctx, next) => ctx.reply('正在更新 Ayaka Status...'))
         // Get Full List of Everything
         let body = () => {
             let options = {
@@ -54,7 +54,7 @@ let plugin = {
                     }
                 }
             })
-            bot.Bot.on('text', (ctx) => ctx.reply("更新完毕。"));
+            bot.Bot.use(async (ctx, next) => ctx.reply("更新完毕。"));
         }
         this.updateMetrics(1, 4)
         body();
@@ -143,7 +143,7 @@ let plugin = {
                 
                 function callback(error, response, body) {
                     if (!error && response.statusCode == 200) {
-                        
+
                     }
                 }
                 
