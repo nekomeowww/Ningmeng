@@ -56,7 +56,7 @@ let plugin = {
             })
             bot.Bot.use(async (ctx, next) => ctx.reply("更新完毕。"));
         }
-        this.updateMetrics(1, 4)
+        //this.updateMetrics(1, 4)
         body();
     },
     async watch(id, url, name) {
@@ -97,6 +97,7 @@ let plugin = {
     async updateNode(id, statusCode) {
 
     },
+    /*
     async updateMetrics(id, statusCode) {
         var pingOptions = {
             retries: 3,
@@ -141,6 +142,7 @@ let plugin = {
             }
         })
     }
+    */
 }
 
 
