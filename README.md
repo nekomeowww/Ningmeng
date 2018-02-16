@@ -34,10 +34,6 @@ This module has the ability to recommend the music from YouTube and CloudMusic a
 
 ### Essential Plugins
 
-- Flight Track
-- Weather Report
-- Watch Dog [for Cachet]
-
 ## Configuration
 
 ### Nginx reverse configuration for webhook
