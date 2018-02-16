@@ -96,9 +96,6 @@ let botctl = {
 let plgctl = {
     start: () => {
         plugin.control();
-    },
-    watchdog: () => {
-        
     }
 }
 

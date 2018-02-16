@@ -24,7 +24,8 @@ var cachetHeaders = {
 
 let plugin = {
     async core() {
-        bot.Bot.use(async (ctx, next) => ctx.reply('正在更新 Ayaka Status...'))
+        if(config.plugins.watchdog.enable) {
+            bot.Bot.use(async (ctx, next) => ctx.reply('正在更新 Ayaka Status...'))
         // Get Full List of Everything
         let body = () => {
             let options = {
@@ -58,6 +59,10 @@ let plugin = {
         }
         //this.updateMetrics(1, 4)
         body();
+        }
+        else {
+            bot.Log.warning("Watch Dog 插件未挂载");
+        }
     },
     async watch(id, url, name) {
         try {
