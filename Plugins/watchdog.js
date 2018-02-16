@@ -61,7 +61,7 @@ let plugin = {
         body();
         }
         else {
-            bot.Log.warning("Watch Dog 插件未挂载");
+            return;
         }
     },
     async watch(id, url, name) {
