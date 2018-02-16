@@ -28,12 +28,6 @@ This project will use [NodeJieba](https://github.com/yanyiwu/nodejieba).
 
 This module has the ability to recommend the music from YouTube and CloudMusic as the status of your current mood.
 
-### NingmengAPI
-
-## Plugin System
-
-### Essential Plugins
-
 ## Configuration
 
 ### Nginx reverse configuration for webhook
