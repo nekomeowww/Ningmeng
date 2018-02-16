@@ -112,7 +112,6 @@ let plugin = {
         
         session.pingHost (target, function (error, target, sent, rcvd) {
             var ms = rcvd - sent;
-            bot.Log.debug("Alive: " + ms);
             if (error) {
                 bot.Log.fatal(error);
             }
