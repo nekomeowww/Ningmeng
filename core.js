@@ -2,6 +2,7 @@ let bot = require('./bot');
 let config = require('./config');
 let msgctl = require('./Bot/message');
 let cmdctl = require('./Bot/command');
+let plugin = require('./Plugins/plugin');
 let packageInfo = require('./package.json');
 
 let core = {
