@@ -44,7 +44,6 @@ let plugin = {
                         let isProxy = Object.keys(api.data[i].tags);
                         isProxy = isProxy.includes('proxy');
                         if(isProxy) {
-                            await bot.Log.warning(api.data[i].name + "is Proxy Node, Pinging...");
                         }
                         else if(api.data[i].link == undefined || api.data[i].link == "" || api.data[i].link == null) {
                             await bot.Log.warning(api.data[i].name + "：无链接可检测。");
@@ -68,7 +67,6 @@ let plugin = {
     async watch(id, url, name) {
         try {
             await got.head(url);
-            bot.Log.trace(name + ' is up!');
             this.updateSite(id, 1)
         }
         catch(err) {
