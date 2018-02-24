@@ -42,6 +42,6 @@ bot.botctl.start()
         await next()
     })
     
-    app.listen(28000, "127.0.0.1");
+    app.listen(config.webhook.truePort, "127.0.0.1");
 
 bot.Log.info("柠檬现在已经在线上啦！");
