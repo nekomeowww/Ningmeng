@@ -40,6 +40,7 @@ let plugin = {
                 }
                 else {
                     var api = JSON.parse(body)
+                    bot.Log.debug("正在更新 Ayaka Status...");
                     for(let i = 0; i < api.data.length; i++) {
                         let isProxy = Object.keys(api.data[i].tags);
                         isProxy = isProxy.includes('proxy');
