@@ -10,7 +10,48 @@ var config = {
         truePort: 8500,
         port: Webhook port here
     },
-    proxy : "127.0.0.1:1087"
+    proxy : "127.0.0.1:1087",
+    plugins: {
+        flightTrack: {
+            name: "Flight Track",
+            enable: true,
+            version: "0.1.0",
+            description: "This is a flight tracking plugin.",
+            locale: "en-US"  //Options:  zh-CN (Simplified Chinese), 
+                             //          zh-TW (Traditional Chinese), 
+                             //          en-US (English: United States)
+        },
+        mail: {
+            name: "Mail",
+            enable: true,
+            version: "0.1.0",
+            description: "This is a mailing plugin.",
+            users: [
+                {
+                    hostname: "Your SMTP host server",
+                    username: "Your Username",
+                    password: "Password"
+                }
+            ]
+        },
+        watchdog: {
+            name: "Watch Dog",
+            enable: true,
+            version: "0.1.0",
+            description: "Monitoring websites and pings",
+            cachet:
+                {
+                    token: "your token",
+                    site: "your status page powered by cachet"
+                }
+        },
+        weather: {
+            name: "Weather",
+            enable: false,
+            version: "0.1.0",
+            description: "Weather reporting service"
+        }
+    }
 }
 
 module.exports = config;
