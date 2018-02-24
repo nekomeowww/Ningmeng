@@ -23,7 +23,7 @@ let info = {
 
         let pluginList = plugin.pluginList;
 
-        ctx.reply(Version + "\n" + "\n" + pluginList[0] + "\n" + pluginList[1] + "\n" + pluginList[2]);
+        ctx.reply(Version + "\n" + "\n" + pluginList[0] + "\n" + pluginList[1]);
         
         bot.Log.debug(">>> INFO -" + ctx.message.date + "- Report");
         bot.Log.debug(messageId);

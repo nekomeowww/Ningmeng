@@ -33,14 +33,6 @@ bot.botctl.start()
         ? bot.Bot.handleUpdate(ctx.request.body, ctx.response)
         : next()
     )
-
-    app.use(async (ctx,next) => {
-        if(ctx.method === 'GET' && ctx.url === '/watchDog') {
-            ctx.statusCode = 200
-            await plugin.plugin.watchdog();
-        }
-        await next()
-    })
     
     app.listen(config.webhook.truePort, "127.0.0.1");
 
