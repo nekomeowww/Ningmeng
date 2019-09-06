@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 
 let config = require('../config');
 let bot = require('../bot');
-let control = require('../control');
+let control = require('../core');
 let packageInfo = require('../package.json');
 
 // Plugin Header

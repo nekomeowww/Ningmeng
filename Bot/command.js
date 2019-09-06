@@ -1,7 +1,7 @@
 let bot = require('../bot');
 let config = require('../config');
 let plugin = require('../Plugins/plugin');
-let control = require('../control');
+let control = require('../core');
 let packageInfo = require('../package.json');
 
 let info = {
@@ -23,8 +23,8 @@ let info = {
 
         let pluginList = plugin.pluginList;
 
-        ctx.reply(Version + "\n" + "\n" + pluginList[0] + "\n" + pluginList[1] + "\n" + pluginList[3]);
-
+        ctx.reply(Version + "\n" + "\n" + pluginList[0] + "\n" + pluginList[1]);
+        
         bot.Log.debug(">>> INFO -" + ctx.message.date + "- Report");
         bot.Log.debug(messageId);
         bot.Log.debug(messageType);

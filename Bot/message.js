@@ -1,7 +1,7 @@
 let bot = require('../bot');
-let nlp = require('./nlp');
+//let nlp = require('./nlp');
 let config = require('../config');
-let control = require('../control');
+let control = require('../core');
 
 let msgctl = {
     core(ctx) {
@@ -11,6 +11,7 @@ let msgctl = {
     }
 }
 
+/*
 let nlpProcessor = {
     command(ctx) {
         let text = control.command.commandCheck(ctx);
@@ -21,6 +22,7 @@ let nlpProcessor = {
         return JSON.stringify(tagging);
     }
 }
+*/
 
 let text = {
     core(ctx) {
@@ -83,35 +85,4 @@ let text = {
         this.reply(ctx, enafternoon, "Good afternoon! Finishing up with all your work?");
 
         this.reply(ctx, lemonnight, "嗯喵，晚安。祝你做个好梦呢~");
-        this.reply(ctx, scnight, "晚安喵，好好休息哦");
-        this.reply(ctx, ennight, "Good night! Wish you would have a sweet dream :)");
-
-        this.reply(ctx, lemonevening, "喵喵，晚上好喔，柠檬在研究新奇的东西呢w");
-        this.reply(ctx, scevening, "晚上好，今天过得怎么样呢？");
-        this.reply(ctx, enevening, "Good evening! How's it going today?");
-        
-    },
-    reply(ctx, textPattern, textReply) {
-        let botLog = bot.Log;
-        if(this.count >= 1) {
-            this.count = 0;
-            return;
-        }
-        else if(this.count == 0) {
-            if(textPattern.test(ctx.message.text)) {
-                this.count ++;
-                ctx.reply(textReply);
-                botLog.debug("回复至: " + ctx.message.from.id + " - 成功 | 匹配: " + textPattern[Symbol.match](ctx.message.text));
-                return;
-            }
-            else{
-                return;
-            }
-        }
-        
-    },
-    count: 0
-}
-
-exports.msgctl = msgctl;
-exports.nlpProcessor = nlpProcessor;
+        this.reply(ctx, scnight, "晚

@@ -1,21 +1,20 @@
 // Local Files
 
 let bot = require('../bot');
-let control = require('../control');
+let control = require('../core');
 let config = require('../config');
 
 // Plugins
 
 let flightTrack = require('./flightTrack');
 let mail = require('./mail');
-let watchdog = require('./watchdog');
 
 
 let pluginList = [
     "已挂载插件: " + mail.pluginName + " [ 版本: " + mail.pluginVersion + " ] ",
-    "已挂载插件: " + flightTrack.pluginName + " [ 版本: " + flightTrack.pluginVersion + " ] ",
-    "已挂载插件: " + watchdog.pluginName + " [ 版本: " + watchdog.pluginVersion + " ] "
+    "已挂载插件: " + flightTrack.pluginName + " [ 版本: " + flightTrack.pluginVersion + " ] "
 ];
+
 
 let plugin = {
     control: () => {
@@ -28,9 +27,6 @@ let plugin = {
     },
     mail(ctx) {
         mail.plugin.core(ctx);
-    },
-    watchdog() {
-        watchdog.plugin.core();
     }
 }
 

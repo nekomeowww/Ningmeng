@@ -7,11 +7,9 @@ const log4js = require('log4js');
 // Local Files
 
 let config = require('./config');
-let core = require('./control');
+let core = require('./core');
 let plugin = require('./Plugins/plugin');
 let packageInfo = require('./package.json');
-let flightTrack = require('./Plugins/flightTrack');
-let mail = require('./Plugins/mail');
 
 // Bot Username
 
@@ -37,17 +35,7 @@ log4js.configure({
     }
 });
 
-// Header
-
 const logger = log4js.getLogger('Ningmeng');
-
-let pluginList = plugin.pluginList;
-for(var i = 0; i<pluginList.length; i++) {
-    logger.debug(pluginList[i]);
-};
-
-
-// Logger
 
 let Log = {
     info: (text) => {
@@ -71,8 +59,7 @@ let Log = {
     }
 }
 
-// Bot
-
+// Header
 
 let token = config.token;
 
@@ -82,23 +69,8 @@ let TelegramClient = new Telegram(token);
 // Bot Control
 
 let botctl = {
-    start: () => {
+    start() {
         core.core.control();
-    },
-
-    message: () => {
-
-    }
-}
-
-// Plugin
-
-let plgctl = {
-    start: () => {
-        plugin.control();
-    },
-    watchdog: () => {
-        
     }
 }
 
@@ -107,4 +79,3 @@ exports.Bot = Bot;
 exports.TelegramClient = TelegramClient;
 exports.Log = Log;
 exports.botctl = botctl;
-exports.plgctl = plgctl;

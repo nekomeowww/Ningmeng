@@ -8,7 +8,7 @@ var config = {
         url: "Webhook url here",
         path: "Webhook path here",
         truePort: 8500,
-        port: Webhook port here
+        port: "Webhook port here"
     },
     proxy : "127.0.0.1:1087",
     plugins: {
@@ -22,7 +22,7 @@ var config = {
                              //          en-US (English: United States)
         },
         mail: {
-            name: "Mail"
+            name: "Mail",
             enable: true,
             version: "0.1.0",
             description: "This is a mailing plugin.",

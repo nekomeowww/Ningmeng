@@ -7,7 +7,7 @@ let cheerio = require('cheerio');
 
 let bot = require('../bot');
 let config = require('../config');
-let control = require('../control');
+let control = require('../core');
 
 // Plugin Header
 
@@ -181,12 +181,3 @@ let tracker = {
 exports.pluginName = pluginName;
 exports.pluginVersion = pluginVersion;
 exports.plugin = plugin;
-
-// Simplified Chinese
-// https://www.cn.kayak.com/tracker/FLIGHT_NUMBER/FLIGHT_DATE
-
-// Traditional Chinese
-// https://www.kayak.com.hk/tracker/FLIGHT_NUMBER/FLIGHT_DATE
-
-// United States: English
-// https://www.kayak.com/tracker/FLIGHT_NUMBER/FLIGHT_DATE
