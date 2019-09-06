@@ -13,17 +13,18 @@ let core = {
 
         // Command
 
+		
         bot.Bot.command(command.register('/start'), (ctx) => ctx.reply("你好喔，这里是柠檬酱。想要开始的话直接选择命令或者直接说话就好了喔w"));
         bot.Bot.command(command.register('/help'), (ctx) => ctx.reply("随意说话就好了喵w"));
         bot.Bot.command(command.register('/info'), (ctx) => cmdctl.info(ctx));
         bot.Bot.command(command.register('/flight'), (ctx) => plugin.plugin.track(ctx));
-        bot.Bot.command(command.register('/nlp'), (ctx) => msgctl.nlpProcessor.command(ctx));
         bot.Bot.command(command.register('/progynova'), (ctx) => ctx.reply("是甜甜的糖糖! "));
         bot.Bot.command(command.register('/androcur'), (ctx) => ctx.reply("是白色的糖糖！"));
         bot.Bot.command(command.register('/estrofem'), (ctx) => ctx.reply("是蓝色的糖糖！"));
         bot.Bot.command(command.register('/proluton'), (ctx) => ctx.reply("是粘稠的汁液！"));
         bot.Bot.command(command.register('/progynondepot'), (ctx) => ctx.reply("是可以变成女孩子的魔法药水！"));
         bot.Bot.command(command.register('/pat'), (ctx) => ctx.reply("（呼噜呼噜声"));
+		
 
         // Context Processing
         
@@ -78,7 +79,7 @@ let core = {
 
 let command = {
 
-    // Register the command and also checkin command with bot's ssername
+    // Register the command and also checkin command with bot's username
 
     register: (commandName) => {
         commands = [commandName, commandName + bot.botUsername];

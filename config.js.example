@@ -8,7 +8,7 @@ var config = {
         url: "Webhook url here",
         path: "Webhook path here",
         truePort: 8500,
-        port: Webhook port here
+        port: "Webhook port here"
     },
     proxy : "127.0.0.1:1087",
     plugins: {

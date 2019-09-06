@@ -6,17 +6,11 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "got": "^8.1.0",
-    "https-proxy-agent": "^2.1.1",
-    "jjg-ping": "^1.0.1",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
     "log4js": "^2.3.12",
-    "net-ping": "^1.2.1",
-    "nodejieba": "^2.2.5",
-    "ping": "^0.2.2",
-    "request-promise": "^4.2.2",
-    "telegraf": "^3.17.0",
-    "website-monitor": "^1.2.1"
+    "request-promise": "^4.2.4",
+    "telegraf": "^3.17.0"
   },
   "devDependencies": {},
   "scripts": {
